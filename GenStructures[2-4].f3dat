@@ -1,0 +1,204 @@
+model new
+model restore '[2-3]_.sav'
+
+; Generate structures in Vent
+; set environments
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+;
+
+zone face hide true  group "Default=IF_001_017" only by zone-face
+zone face hide true  group "Default=IF_001_009" only by zone-face
+
+;Platform
+zone face select  skin begin (100.848,-388.218,106.78) direction (-0.727539,0.615224,-0.303621) break-angle 10
+zone face select  skin begin (22.5817,29.7396,78.3306) direction (-0.170095,-0.981555,-0.0872835) break-angle 10
+zone face group "End" slot "Platform" internal range selected
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_001_033" only by zone-face
+
+zone face select  skin begin (-2.29325,-379.502,-78.3776) direction (0.0311254,0.681985,0.730704) break-angle 10
+zone face group "Invert" slot "Platform" internal range selected
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (129.532,-340.218,125.993) direction (-0.740638,0.566296,-0.361612) break-angle 20
+zone face group "Upper" slot "Platform" internal range selected
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+
+
+;
+; Main Tunnel
+zone face hide off internal use-hidden-zones
+zone face select  skin begin (118.276,-368.63,-35.3113) direction (-0.7746,0.309314,0.551652) break-angle 10
+zone face select  skin begin (118.425,-368.328,-35.4169) direction (-0.399986,0.869129,0.290907) break-angle 10
+zone face group "Invert" slot "MainTunnel" internal range selected
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=EF_007" only by zone-face
+zone face hide true  group "Default=EF_009" only by zone-face
+zone face select  skin begin (67.4484,-423.224,102.286) direction (-0.5917,0.714914,-0.372544) break-angle 45
+zone face select  skin begin (192.802,-54.409,86.3261) direction (-0.975724,-0.172344,-0.135132) break-angle 45
+zone face group "Upper" slot "MainTunnel" internal range selected
+zone face select off internal use-hidden-zones
+
+;Vent5Conn
+zone face hide true  group "Default=IF_016_098" only by zone-face
+zone face hide true  group "Default=IF_016_097" only by zone-face
+zone face hide true  group "Default=IF_016_043" only by zone-face
+zone face hide true  group "Default=IF_016_044" only by zone-face
+
+zone face hide true  group "Default=IF_001_016" and "Platform=Upper" only by zone-face
+zone face select  skin begin (88.1962,-309.736,86.2397) direction (-0.938208,0.146391,-0.313584) break-angle 45
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (88.1883,-309.732,86.2725) direction (-0.961626,0.159506,-0.223235) break-angle 45
+zone face group "Upper" slot "Vent5ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true  group "1=ZG_016" and "Structure=HR" and "Vent5Conn=Lower" only by zone
+zone face select  skin begin (13.8952,-316.786,47.9335) direction (-0.088907,0.788406,0.608697) break-angle 10
+zone face group "MidSlab" slot "Vent5ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide off  group "1=ZG_016" and "Structure=HR" and "Vent5Conn=Lower"  only by zone
+zone face hide off internal use-hidden-zones
+zone face select  skin begin (39.5475,-366.51,-31.7193) direction (-0.234012,0.5807,0.77976) break-angle 10
+zone face group "BaseSlab" slot "Vent5ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+
+;Vent6Conn
+zone face hide true  group "Upper" slot "Platform"
+
+zone face hide true  group "Default=IF_016_106" only by zone-face
+zone face hide true  group "Default=IF_016_100" only by zone-face
+zone face hide true  group "Default=IF_016_076" only by zone-face
+zone face select  skin begin (49.2775,-147.932,75.5087) direction (-0.838604,0.477674,-0.26186) break-angle 45
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (49.2572,-147.967,75.5072) direction (-0.906336,0.32532,-0.269669) break-angle 45
+zone face group "Upper" slot "Vent6ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (21.2304,-145.581,42.6383) direction (-0.463299,0.467261,0.753008) break-angle 10
+zone face group "BaseSlab" slot "Vent6ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true  group "1=ZG_016" and "Structure=HR" and "Vent6Conn=Lower" only by zone
+zone face select  skin begin (17.955,-145.217,52.6585) direction (-0.35457,0.690263,0.630727) break-angle 10
+zone face group "MidSlab" slot "Vent6ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+;;;;;;;;;;
+; ConnToMainShaftShell
+
+zone face hide true  group "Default=IF_018_033" only by zone-face
+zone face select  skin begin (58.3245,-249.635,69.8162) direction (-0.764897,0.636682,-0.0978181) break-angle 45
+zone face group "Upper" slot "ConnToMainShaftShell" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (21.7544,-228.186,48.6469) direction (-0.229846,0.838905,0.493365) break-angle 10
+zone face group "Lower" slot "ConnToMainShaftShell" internal range selected
+zone face select off internal use-hidden-zones
+
+;; generate shell
+zone face hide off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 701 internal range group "Platform=End"
+struct shell create by-zone-face element-type dkt-cst ID 702 internal range group "Platform=Invert"
+struct shell create by-zone-face element-type dkt-cst ID 703 internal range group "Platform=Upper"
+
+struct shell create by-zone-face element-type dkt-cst ID 801 internal range group "MainTunnel=Invert"
+struct shell create by-zone-face element-type dkt-cst ID 802 internal range group "MainTunnel=Upper"
+
+struct shell create by-zone-face element-type dkt-cst ID 911 internal range group "Vent5ConnShell=Upper"
+struct shell create by-zone-face element-type dkt-cst ID 912 internal range group "Vent5ConnShell=MidSlab"
+struct shell create by-zone-face element-type dkt-cst ID 913 internal range group "Vent5ConnShell=BaseSlab"
+
+struct shell create by-zone-face element-type dkt-cst ID 921 internal range group "Vent6ConnShell=Upper"
+struct shell create by-zone-face element-type dkt-cst ID 922 internal range group "Vent6ConnShell=BaseSlab"
+struct shell create by-zone-face element-type dkt-cst ID 923 internal range group "Vent6ConnShell=MidSlab"
+
+struct shell create by-zone-face element-type dkt-cst ID 931 internal range group "ConnToMainShaftShell=Upper"
+struct shell create by-zone-face element-type dkt-cst ID 932 internal range group "ConnToMainShaftShell=Lower"
+
+; delete zone
+zone hide off range use-hidden
+zone delete range group "Structure=HR" 
+zone delete range group "Structure=SR" 
+
+; gen Concourse Column
+fish define genColumn(cor_x, cor_y, cor_zb)
+  sPt_top = struct.node.near(cor_x, cor_y, 102.389) ; get nearest shell node corresponds to the input coordinates
+  sPt_bot = struct.node.near(cor_x, cor_y, cor_zb) ; 
+
+  ; we will construct column using node ID of top and bottom slab
+  ; get pointer of shell node to be connected with column and translate into node id
+  ; push node id to glabal variable to be used for command that genearte column
+
+  global nodeIDtop = struct.node.id.component(sPt_top) ; get top slab node id
+  global nodeIDbot = struct.node.id.component(sPt_bot) ; get bot slab node id  
+
+  global beamNodePosTop = struct.node.pos(sPt_top)
+  global beamNodePosBot = struct.node.pos(sPt_bot)
+
+
+  oo = io.out('      ')
+  oo = io.out('Shell Node IDs')
+  oo = io.out(nodeIDtop)
+  oo = io.out(nodeIDbot)
+  oo = io.out('      ')
+
+  oo = io.out('Shell Node Pos')
+  oo = io.out(beamNodePosTop)
+  oo = io.out(beamNodePosBot)
+  oo = io.out('      ') 
+  
+  
+
+  command
+      struct beam create by-line @beamNodePosTop @beamNodePosBot id 3000 group 'A'
+;      struct node join       
+  end_command
+
+  global beamEndnode   = struct.node.maxid ; top
+  global beamEndnode_1 = struct.node.maxid - 1 ; bot
+
+  oo = io.out('      ')
+  oo = io.out('Beam Node IDs')
+  oo = io.out(beamEndnode)
+  oo = io.out(beamEndnode_1)
+  oo = io.out('      ')
+end
+
+@genColumn(-21.9438,-213.821,93.8888)
+@genColumn(-21.9438,-200.821,93.8888)
+
+@genColumn(-14.4438,-213.821,93.8888)
+@genColumn(-14.4438,-200.821,93.8888)
+
+@genColumn(-6.94382,-213.821,93.8888)
+@genColumn(-6.94382,-200.821,93.8888)
+
+@genColumn(0.556176,-213.821,93.8888)
+@genColumn(0.556176,-200.821,93.8888)
+
+@genColumn(8.05618,-213.821,93.8888)
+@genColumn(8.05618,-200.821,93.8888)
+;; ConnectToShaft
+@genColumn(13.9812,-207.321,93.8888)
+@genColumn(18.5812,-207.321,93.8888)
+
+
+model save '[2-4]_.sav'

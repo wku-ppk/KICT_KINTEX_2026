@@ -1,0 +1,23 @@
+# FLAC3D saved states
+*.sav
+*.f3sav
+
+# Backups and temporary files
+*.backup
+*.bak
+*.tmp
+*.temp
+~$*
+/temp.f3dat
+errorlog.dmp
+
+# Error logs and crash dumps
+errorlog.txt
+*.dmp
+
+# Track only this grid file
+*.f3grid
+!/KINTEX_260902-2.f3grid
+
+# Rhino file
+*.3dm

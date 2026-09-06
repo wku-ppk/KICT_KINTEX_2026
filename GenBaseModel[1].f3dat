@@ -1,0 +1,141 @@
+; GTX KINTEX Station 3D Modelling
+; Constructed by PPK in 2026.9
+
+model new
+
+program echo on
+
+model configure dynamic
+model deterministic off
+
+program thread automatic
+
+; import mesh made from Griddle
+
+zone import 'KINTEX_260902-2.f3grid'
+
+geometry import 'Fill_Bot.stl' set 'FillBot'
+geometry import 'AlluvialSand_UP.stl' set 'AlluvialSandTop'
+geometry import 'AlluvialSand_Bot.stl' set 'AlluvialSandBot'
+geometry import 'WeatheredSoil_Bot.stl' set 'WeatheredSoilBot'
+geometry import 'WeatheredRock_Top.stl' set 'WeatheredRockTop'
+geometry import 'WeatheredRock_Bot.stl' set 'WeatheredRockBot'
+geometry import 'SoftRock_Top.stl' set 'SoftRockTop'
+geometry import 'SoftRock_Bot.stl' set 'SoftRockBot'
+geometry import 'Vent6Shaft_New.stl' set 'Vent6Shaft'
+geometry import 'Vent5Box.stl' set 'Vent5Box'
+
+geometry import 'Vent5ConnUpper.stl' set 'Vent5ConnUpper'
+geometry import 'Vent5ConnLower.stl' set 'Vent5ConnLower'
+geometry import 'Vent6ConnUpper.stl' set 'Vent6ConnUpper'
+geometry import 'Vent6ConnLower.stl' set 'Vent6ConnLower'
+
+zone cmodel assign mohr-coulomb
+
+; Re-grouping
+
+zone group "Fill"         slot "Layer" range group "ZG_004"
+zone group "Fill" slot "Structure" range group "ZG_010" or "ZG_014" or "ZG_011" or "ZG_013" or "ZG_012"
+
+zone group 'AlluvialClay' slot 'Layer' range group "ZG_006" or "ZG_008"
+zone group 'AlluvialClay' slot 'Structure' ...
+    range group 'ZG_006' or 'ZG_008' slot '1' not ...
+          geometry-space 'AlluvialSandTop' count 1 direction (0,0,-1) ...
+          geometry-space 'FillBot' count 1 direction (0,0,1)
+
+zone group 'AlluvialClay' slot 'Structure' ...
+    range group 'ZG_006' slot '1' ...
+          geometry-space 'Vent5Box' count 1 direction (1,0,0) ...
+          position-z 98.0 106.0
+
+zone group 'AlluvialSand' slot 'Layer' ...
+    range group 'ZG_003' slot '1' ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandTop' count 1 direction (0,0,1)
+zone group 'AlluvialSand' slot 'Structure' ...
+    range group 'ZG_003' slot '1' not ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandTop' count 1 direction (0,0,1)
+zone group 'AlluvialSand' slot 'Structure' range group "ZG_046"  ; Catch garbage Zone
+
+zone group 'WS' slot 'Layer' ...
+    range group 'ZG_003' slot '1' ...
+          geometry-space 'WeatheredSoilBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,1)
+zone group 'WS' slot 'Structure' ...
+    range group 'ZG_003' slot '1' not ...
+          geometry-space 'WeatheredSoilBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,1)
+
+zone group 'WR' slot 'Layer' range group "ZG_005"
+zone group 'WR' slot 'Structure' ...
+    range group 'ZG_005' slot '1' not ...
+          geometry-space 'WeatheredRockBot' count 1 direction (0,0,-1) ...
+          geometry-space 'WeatheredRockTop' count 1 direction (0,0,1)
+
+zone group 'SR' slot 'Layer' range group "ZG_002"
+zone group 'SR' slot 'Structure' ...
+    range group 'ZG_002' slot '1' not ...
+          geometry-space 'SoftRockBot' count 1 direction (0,0,-1) ...
+          geometry-space 'SoftRockTop' count 1 direction (0,0,1)
+
+zone group 'HR'  slot "Layer" range group "ZG_001"
+zone group 'HR' slot 'Structure' ...
+    range group 'ZG_001' slot '1' not ...
+          geometry-space 'SoftRockBot' count 1 direction (0,0,1)
+zone group 'HR' slot 'Structure' ...
+    range group 'ZG_001' slot '1' ...
+          geometry-space 'Vent6Shaft' count 1 direction (1,0,0) ...
+          position-z 46.619 100.0
+
+;zone hide off range use-hidden
+;zone group 'WR' slot 'Layer' range id 519733 ; CHeck !!!!
+
+; Set groups in structures
+call 'SetGroups.fis'
+
+; Set properties
+fish define setDynProp(vdensity, vs, vpois, vcohesion, vphi, vtens, vgroup)
+   global gvDensity = vdensity
+   global gvCohesion = vcohesion
+   global gvPhi = vphi
+   global gvTens = vtens
+   global gvShearMod = vdensity*vs^2 
+   global gvBulkMod = (2*gvShearMod*(1+vpois))/(3*(1-2*vpois))
+   global gvGroup = vgroup
+  command
+      zone property density @gvDensity bulk @gvBulkMod shear @gvShearMod cohesion @gvCohesion friction @gvPhi tension @gvTens range group @gvGroup
+  end_command
+   
+end
+; argument order : density, vs, poisson's ratio, cohesion, friction angle(Deg), tension strength, group name(string)
+@setDynProp(1850, 400, 0.25, 1000, 35, 10.0, 'Fill')
+@setDynProp(1850, 400, 0.25, 1000, 35, 10.0, 'AlluvialClay')
+@setDynProp(1850, 400, 0.25, 1000, 35, 10.0, 'AlluvialSand')
+@setDynProp(1900, 550, 0.25, 20000, 37, 1000, 'WS')
+@setDynProp(1950, 650, 0.25, 50000, 38, 10000, 'WR')
+;@setDynProp(2050, 800, 0.25, 100000, 40, 10000, 'V_grade')
+;@setDynProp(2150, 1000, 0.25, 100000, 42, 50000, 'IV_grade')
+@setDynProp(2250, 1200, 0.25, 200000, 42, 50000, 'SR')
+@setDynProp(2300, 1500, 0.25, 200000, 42, 100000, 'HR')
+
+; Assign BC
+; x = -150 ~ 150, y = -50 ~ 350, z = 40.0
+zone face apply velocity-normal 0.0 range position-x -150.0
+zone face apply velocity-normal 0.0 range position-x 150.0
+zone face apply velocity-normal 0.0 range position-y -50.0
+zone face apply velocity-normal 0.0 range position-y -350.0
+zone face apply velocity-normal 0.0 range position-z 40.0
+
+; assign gravity
+model gravity 0 0 -9.81
+
+;
+model mechanical active on
+model dynamic active off
+model largestrain off
+
+; initial solve
+model solve elastic 
+
+model save '[1]_.sav'

@@ -1,0 +1,204 @@
+model new
+model restore '[2-1]_.sav'
+
+; Generate structures in MainShaft
+; set environments
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Main Shaft
+zone face hide true  group "Default=IF_001_033" only by zone-face
+
+zone face select  skin begin (93.0885,-240.015,144.498) direction (-0.613113,0.405099,-0.678224) break-angle 45
+zone face group   "MainShaft=SideWall" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (119.319,-244.355,140.502) direction (-0.864393,0.330324,-0.379093) break-angle 10
+zone face group   "MainShaft=TopSlab" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (63.866,-256.568,2.15787) direction (-0.340104,0.547273,0.764737) break-angle 10
+zone face group   "MainShaft=Base" internal range selected
+zone face select off internal use-hidden-zones
+
+; temporary hide center in shaft interiorzones
+zone hide true group "MainShaft_Excavation1=Shaft" or "MainShaft_Excavation2=Shaft" or "MainShaft_Excavation3=Shaft" or "MainShaft_Excavation4=Shaft" or ...
+                        "MainShaft_Excavation5=Shaft" or "MainShaft_Excavation6=Shaft" or "MainShaft_Excavation7=Shaft"
+
+;zone hide true  group "1=ZG_049" and "Structure=AlluvialSand" and "MainShaft_Excavation1=Shaft" only by zone
+;zone hide true  group "1=ZG_101" and "Structure=AlluvialSand" and "MainShaft_Excavation2=Shaft" only by zone
+;zone hide true  group "1=ZG_121" and "Structure=WS" and "MainShaft_Excavation2=Shaft" only by zone
+;zone hide true  group "1=ZG_124" and "Structure=WS" and "MainShaft_Excavation3=Shaft" only by zone
+;zone hide true  group "1=ZG_148" and "Structure=WR" and "MainShaft_Excavation4=Shaft" only by zone
+;zone hide true  group "1=ZG_129" and "Structure=WR" and "MainShaft_Excavation5=Shaft" only by zone
+;zone hide true  group "1=ZG_111" and "Structure=SR" and "MainShaft_Excavation5=Shaft" only by zone
+;zone hide true  group "1=ZG_099" and "Structure=SR" and "MainShaft_Excavation6=Shaft" only by zone
+;zone hide true  group "1=ZG_045" and "Structure=HR" and "MainShaft_Excavation6=Shaft" only by zone
+;zone hide true  group "1=ZG_018" and "Structure=HR" and "MainShaft_Excavation7=Shaft" only by zone
+;zone hide true  group "1=ZG_115" and "Structure=AlluvialSand" and "MainShaft_Excavation3=Shaft" only by zone
+
+; BulkHead1
+zone face select  skin begin (100.77,-198.365,121.166) direction (-0.901693,-0.283033,-0.326867) break-angle 10
+zone face select  skin begin (82.1975,-247.972,128.207) direction (-0.624497,0.691657,-0.362786) break-angle 10
+zone face group   "MainShaft=BulkHead1L&R" internal range selected
+zone face select off internal use-hidden-zones
+; Main Column
+zone face select  skin begin (80.0702,-235.026,153.656) direction (-0.668187,0.348698,-0.657218) break-angle 10
+zone face select  skin begin (80.0911,-235.02,153.642) direction (-0.610139,0.371348,-0.699879) break-angle 10
+zone face select  skin begin (80.1156,-235.012,153.626) direction (-0.540306,0.394398,-0.743317) break-angle 10
+zone face group   "MainShaft=MainColumn" internal range selected
+zone face select off internal use-hidden-zones
+; Elevator Shaft
+zone face select  skin begin (94.1041,-218.574,140.317) direction (-0.775182,0.0874252,-0.62566) break-angle 10
+zone face select  skin begin (94.1108,-218.513,140.321) direction (-0.748824,0.264753,-0.607593) break-angle 10
+zone face select  skin begin (9.02879,-218.667,119.534) direction (0.768864,0.437851,-0.465977) break-angle 10
+zone face select  skin begin (9.05302,-218.752,119.519) direction (0.846784,0.157566,-0.508064) break-angle 10
+zone hide true group "MainShaft_Excavation1=ELShaftL2" or "MainShaft_Excavation2=ELShaftL2" or "MainShaft_Excavation3=ELShaftL2" or ...
+                     "MainShaft_Excavation4=ELShaftL2" or "MainShaft_Excavation5=ELShaftL2" or "MainShaft_Excavation6=ELShaftL2" or "MainShaft_Excavation7=ELShaftL2"
+zone hide true group "MainShaft_Excavation1=ELShaftR2" or "MainShaft_Excavation2=ELShaftR2" or "MainShaft_Excavation3=ELShaftR2" or ...
+                     "MainShaft_Excavation4=ELShaftR2" or "MainShaft_Excavation5=ELShaftR2" or "MainShaft_Excavation6=ELShaftR2" or "MainShaft_Excavation7=ELShaftR2"
+zone face select  skin begin (107.75,-203.709,159.05) direction (-0.744861,-0.107862,-0.658444) break-angle 10
+zone face select  skin begin (107.752,-203.659,159.052) direction (-0.747735,0.0248187,-0.663533) break-angle 10
+zone face group   "MainShaft=ELShaft" internal range selected
+zone face select off internal use-hidden-zones
+
+
+zone hide true group "MainShaft_Excavation1=ShaftBHL2" or "MainShaft_Excavation2=ShaftBHL2" or "MainShaft_Excavation3=ShaftBHL2" or ...
+                     "MainShaft_Excavation4=ShaftBHL2" or "MainShaft_Excavation5=ShaftBHL2" or "MainShaft_Excavation6=ShaftBHL2" or "MainShaft_Excavation7=ShaftBHL2"
+zone hide true group "MainShaft_Excavation1=ShaftBHR2" or "MainShaft_Excavation2=ShaftBHR2" or "MainShaft_Excavation3=ShaftBHR2" or ...
+                     "MainShaft_Excavation4=ShaftBHR2" or "MainShaft_Excavation5=ShaftBHR2" or "MainShaft_Excavation6=ShaftBHR2" or "MainShaft_Excavation7=ShaftBHR2"
+
+zone face select  skin begin (57.6508,-218.815,131.703) direction (-0.669439,-0.00278191,-0.742862) break-angle 10
+zone face select  skin begin (57.6638,-218.641,131.721) direction (-0.577549,0.523542,-0.626371) break-angle 10
+zone face select  skin begin (8.20424,-232.525,143.187) direction (0.486436,0.578068,-0.655147) break-angle 10
+zone face select  skin begin (8.23393,-232.647,143.142) direction (0.571524,0.211083,-0.792972) break-angle 10
+zone face group   "MainShaft=BulkHead2&3L&R" internal range selected
+zone face select off internal use-hidden-zones
+;
+zone hide off range use-hidden
+; set environments
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+;
+zone hide true group "MainShaft_Excavation1=ShaftBHL2" or "MainShaft_Excavation2=ShaftBHL2" or "MainShaft_Excavation3=ShaftBHL2" or ...
+                     "MainShaft_Excavation4=ShaftBHL2" or "MainShaft_Excavation5=ShaftBHL2" or "MainShaft_Excavation6=ShaftBHL2" or "MainShaft_Excavation7=ShaftBHL2"
+zone hide true group "MainShaft_Excavation1=ShaftBHL3" or "MainShaft_Excavation2=ShaftBHL3" or "MainShaft_Excavation3=ShaftBHL3" or ...
+                     "MainShaft_Excavation4=ShaftBHL3" or "MainShaft_Excavation5=ShaftBHL3" or "MainShaft_Excavation6=ShaftBHL3" or "MainShaft_Excavation7=ShaftBHL3"
+zone hide true group "MainShaft_Excavation1=ShaftBHR1" or "MainShaft_Excavation2=ShaftBHR1" or "MainShaft_Excavation3=ShaftBHR1" or ...
+                     "MainShaft_Excavation4=ShaftBHR1" or "MainShaft_Excavation5=ShaftBHR1" or "MainShaft_Excavation6=ShaftBHR1" or "MainShaft_Excavation7=ShaftBHR1"
+zone hide true group "MainShaft_Excavation1=ShaftBHR2" or "MainShaft_Excavation2=ShaftBHR2" or "MainShaft_Excavation3=ShaftBHR2" or ...
+                     "MainShaft_Excavation4=ShaftBHR2" or "MainShaft_Excavation5=ShaftBHR2" or "MainShaft_Excavation6=ShaftBHR2" or "MainShaft_Excavation7=ShaftBHR2"
+zone hide true group "MainShaft_Excavation1=ELShaftL1" or "MainShaft_Excavation2=ELShaftL1" or "MainShaft_Excavation3=ELShaftL1" or ...
+                     "MainShaft_Excavation4=ELShaftL1" or "MainShaft_Excavation5=ELShaftL1" or "MainShaft_Excavation6=ELShaftL1" or "MainShaft_Excavation7=ELShaftL2"
+zone hide true group "MainShaft_Excavation1=ELShaftR1" or "MainShaft_Excavation2=ELShaftR1" or "MainShaft_Excavation3=ELShaftR1" or ...
+                     "MainShaft_Excavation4=ELShaftR1" or "MainShaft_Excavation5=ELShaftR1" or "MainShaft_Excavation6=ELShaftR1" or "MainShaft_Excavation7=ELShaftR2"
+zone hide true group "MainShaft_Excavation1=ELShaftL2" or "MainShaft_Excavation2=ELShaftL2" or "MainShaft_Excavation3=ELShaftL2" or ...
+                     "MainShaft_Excavation4=ELShaftL2" or "MainShaft_Excavation5=ELShaftL2" or "MainShaft_Excavation6=ELShaftL2" or "MainShaft_Excavation7=ELShaftL2"
+zone hide true group "MainShaft_Excavation1=ELShaftR2" or "MainShaft_Excavation2=ELShaftR2" or "MainShaft_Excavation3=ELShaftR2" or ...
+                     "MainShaft_Excavation4=ELShaftR2" or "MainShaft_Excavation5=ELShaftR2" or "MainShaft_Excavation6=ELShaftR2" or "MainShaft_Excavation7=ELShaftR2"
+; excavation
+zone hide true group "MainShaft_Excavation1=Shaft" or "MainShaft_Excavation1=ShaftBHL1" or "MainShaft_Excavation1=ShaftMC1" or ...
+                     "MainShaft_Excavation1=ShaftMC2" or "MainShaft_Excavation1=ShaftMC3" or "MainShaft_Excavation1=ShaftBHR3" or "MainShaft_Excavation1=ShaftBHL1"
+zone face select  skin begin (61.078,-216.244,130.332) direction (-0.534516,0.316563,-0.783633) break-angle 10
+zone face group   "MainShaft=Slab_1" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true group "MainShaft_Excavation2=Shaft" or "MainShaft_Excavation2=ShaftBHL1" or "MainShaft_Excavation2=ShaftMC1" or ...
+                     "MainShaft_Excavation2=ShaftMC2" or "MainShaft_Excavation2=ShaftMC3" or "MainShaft_Excavation2=ShaftBHR3" or "MainShaft_Excavation2=ShaftBHL1"
+zone face select  skin begin (80.1342,-204.88,118.592) direction (-0.794784,0.000567658,-0.606892) break-angle 10
+zone face group   "MainShaft=Slab_2" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true group "MainShaft_Excavation3=Shaft" or "MainShaft_Excavation3=ShaftBHL1" or "MainShaft_Excavation3=ShaftMC1" or ...
+                     "MainShaft_Excavation3=ShaftMC2" or "MainShaft_Excavation3=ShaftMC3" or "MainShaft_Excavation3=ShaftBHR3" or "MainShaft_Excavation3=ShaftBHL1"
+zone hide true group "MainShaft_Excavation4=Shaft" or "MainShaft_Excavation4=ShaftBHL1" or "MainShaft_Excavation4=ShaftMC1" or ...
+                     "MainShaft_Excavation4=ShaftMC2" or "MainShaft_Excavation4=ShaftMC3" or "MainShaft_Excavation4=ShaftBHR3" or "MainShaft_Excavation4=ShaftBHL1"
+zone face select  skin begin (104.375,-209.004,155.691) direction (-0.692411,0.069499,-0.718149) break-angle 10
+zone face group   "MainShaft=Slab_3" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true group "MainShaft_Excavation5=Shaft" or "MainShaft_Excavation5=ShaftBHL1" or "MainShaft_Excavation5=ShaftMC1" or ...
+                     "MainShaft_Excavation5=ShaftMC2" or "MainShaft_Excavation5=ShaftMC3" or "MainShaft_Excavation5=ShaftBHR3" or "MainShaft_Excavation5=ShaftBHL1"
+zone face select  skin begin (82.3564,-224.311,119.873) direction (-0.683673,0.206033,-0.700101) break-angle 10
+zone face group   "MainShaft=Slab_4" internal range selected
+zone face select off internal use-hidden-zones
+
+zone hide true group "MainShaft_Excavation6=Shaft" or "MainShaft_Excavation6=ShaftBHL1" or "MainShaft_Excavation6=ShaftMC1" or ...
+                     "MainShaft_Excavation6=ShaftMC2" or "MainShaft_Excavation6=ShaftMC3" or "MainShaft_Excavation6=ShaftBHR3" or "MainShaft_Excavation6=ShaftBHL1"
+zone face select  skin begin (86.1273,-210.421,91.6356) direction (-0.915314,-0.00231047,-0.402735) break-angle 10
+zone face group   "MainShaft=Slab_5" internal range selected
+zone face select off internal use-hidden-zones
+
+
+; generate shell
+struct shell create by-zone-face element-type dkt-cst ID 401 internal range group "MainShaft=SideWall"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+struct shell create by-zone-face element-type dkt-cst ID 402 internal range group "MainShaft=TopSlab"
+struct shell create by-zone-face element-type dkt-cst ID 403 internal range group "MainShaft=Base"
+struct shell create by-zone-face element-type dkt-cst ID 411 internal range group "MainShaft=BulkHead1L&R"     ; "4" Shaft Main, "1" BulkHead, No. "1, 2, 3" 
+struct shell create by-zone-face element-type dkt-cst ID 412 internal range group "MainShaft=BulkHead2&3L&R"
+struct shell create by-zone-face element-type dkt-cst ID 421 internal range group "MainShaft=MainColumn"
+struct shell create by-zone-face element-type dkt-cst ID 431 internal range group "MainShaft=ELShaft"
+struct shell create by-zone-face element-type dkt-cst ID 441 internal range group "MainShaft=Slab_1"
+struct shell create by-zone-face element-type dkt-cst ID 442 internal range group "MainShaft=Slab_2"
+struct shell create by-zone-face element-type dkt-cst ID 443 internal range group "MainShaft=Slab_3"
+struct shell create by-zone-face element-type dkt-cst ID 444 internal range group "MainShaft=Slab_4"
+struct shell create by-zone-face element-type dkt-cst ID 444 internal range group "MainShaft=Slab_5"
+
+
+;
+zone delete range use-hidden group "MainShaft_Excavation1=Shaft" or "MainShaft_Excavation2=Shaft" or "MainShaft_Excavation3=Shaft" or "MainShaft_Excavation4=Shaft" or ...
+                        "MainShaft_Excavation5=Shaft" or "MainShaft_Excavation6=Shaft" or "MainShaft_Excavation7=Shaft"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHL1" or "MainShaft_Excavation2=ShaftBHL1" or "MainShaft_Excavation3=ShaftBHL1" or ...
+                     "MainShaft_Excavation4=ShaftBHL1" or "MainShaft_Excavation5=ShaftBHL1" or "MainShaft_Excavation6=ShaftBHL1" or "MainShaft_Excavation7=ShaftBHL1"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHL2" or "MainShaft_Excavation2=ShaftBHL2" or "MainShaft_Excavation3=ShaftBHL2" or ...
+                     "MainShaft_Excavation4=ShaftBHL2" or "MainShaft_Excavation5=ShaftBHL2" or "MainShaft_Excavation6=ShaftBHL2" or "MainShaft_Excavation7=ShaftBHL2"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHL3" or "MainShaft_Excavation2=ShaftBHL3" or "MainShaft_Excavation3=ShaftBHL3" or ...
+                     "MainShaft_Excavation4=ShaftBHL3" or "MainShaft_Excavation5=ShaftBHL3" or "MainShaft_Excavation6=ShaftBHL3" or "MainShaft_Excavation7=ShaftBHL3"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHR1" or "MainShaft_Excavation2=ShaftBHR1" or "MainShaft_Excavation3=ShaftBHR1" or ...
+                     "MainShaft_Excavation4=ShaftBHR1" or "MainShaft_Excavation5=ShaftBHR1" or "MainShaft_Excavation6=ShaftBHR1" or "MainShaft_Excavation7=ShaftBHR1"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHR2" or "MainShaft_Excavation2=ShaftBHR2" or "MainShaft_Excavation3=ShaftBHR2" or ...
+                     "MainShaft_Excavation4=ShaftBHR2" or "MainShaft_Excavation5=ShaftBHR2" or "MainShaft_Excavation6=ShaftBHR2" or "MainShaft_Excavation7=ShaftBHR2"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftBHR3" or "MainShaft_Excavation2=ShaftBHR3" or "MainShaft_Excavation3=ShaftBHR3" or ...
+                     "MainShaft_Excavation4=ShaftBHR3" or "MainShaft_Excavation5=ShaftBHR3" or "MainShaft_Excavation6=ShaftBHR3" or "MainShaft_Excavation7=ShaftBHR3"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftMC1" or "MainShaft_Excavation2=ShaftMC1" or "MainShaft_Excavation3=ShaftMC1" or ...
+                     "MainShaft_Excavation4=ShaftMC1" or "MainShaft_Excavation5=ShaftMC1" or "MainShaft_Excavation6=ShaftMC1" or "MainShaft_Excavation7=ShaftMC1"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftMC2" or "MainShaft_Excavation2=ShaftMC2" or "MainShaft_Excavation3=ShaftMC2" or ...
+                     "MainShaft_Excavation4=ShaftMC2" or "MainShaft_Excavation5=ShaftMC2" or "MainShaft_Excavation6=ShaftMC2" or "MainShaft_Excavation7=ShaftMC2"
+zone delete range use-hidden group "MainShaft_Excavation1=ShaftMC3" or "MainShaft_Excavation2=ShaftMC3" or "MainShaft_Excavation3=ShaftMC3" or ...
+                     "MainShaft_Excavation4=ShaftMC3" or "MainShaft_Excavation5=ShaftMC3" or "MainShaft_Excavation6=ShaftMC3" or "MainShaft_Excavation7=ShaftMC3"                     
+zone delete range use-hidden group "MainShaft_Excavation1=ELShaftL1" or "MainShaft_Excavation2=ELShaftL1" or "MainShaft_Excavation3=ELShaftL1" or ...
+                     "MainShaft_Excavation4=ELShaftL1" or "MainShaft_Excavation5=ELShaftL1" or "MainShaft_Excavation6=ELShaftL1" or "MainShaft_Excavation7=ELShaftL1"
+zone delete range use-hidden group "MainShaft_Excavation1=ELShaftL2" or "MainShaft_Excavation2=ELShaftL2" or "MainShaft_Excavation3=ELShaftL2" or ...
+                     "MainShaft_Excavation4=ELShaftL2" or "MainShaft_Excavation5=ELShaftL2" or "MainShaft_Excavation6=ELShaftL2" or "MainShaft_Excavation7=ELShaftL2"
+zone delete range use-hidden group "MainShaft_Excavation1=ELShaftR1" or "MainShaft_Excavation2=ELShaftR1" or "MainShaft_Excavation3=ELShaftR1" or ...
+                     "MainShaft_Excavation4=ELShaftR1" or "MainShaft_Excavation5=ELShaftR1" or "MainShaft_Excavation6=ELShaftR1" or "MainShaft_Excavation7=ELShaftR1"
+zone delete range use-hidden group "MainShaft_Excavation1=ELShaftR2" or "MainShaft_Excavation2=ELShaftR2" or "MainShaft_Excavation3=ELShaftR2" or ...
+                     "MainShaft_Excavation4=ELShaftR2" or "MainShaft_Excavation5=ELShaftR2" or "MainShaft_Excavation6=ELShaftR2" or "MainShaft_Excavation7=ELShaftR2"
+
+zone hide off range use-hidden
+
+zone group 'HR' remove slot 'Structure' range id 518128
+zone group 'Section2' remove slot 'Vent6_Excavation2' range id 518128
+;zone group 'HR' slot 'Layer' range id 518128
+zone group 'HR' remove slot 'Structure' range id 514177
+zone group 'Section2' remove slot 'Vent6_Excavation2' range id 514177
+zone group 'HR' remove slot 'Structure' range id 514114
+
+zone group 'WR' remove slot 'Structure' range id 656518
+zone group 'WR' remove slot 'Structure' range id 519733
+
+model save '[2-2]_.sav'
+
+

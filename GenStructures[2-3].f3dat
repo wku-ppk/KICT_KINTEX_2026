@@ -1,0 +1,236 @@
+model new
+model restore '[2-2]_.sav'
+
+; Generate structures in Vent
+; set environments
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Vent5
+
+zone face select  skin begin (45.812,-343.118,149.229) direction (-0.361431,0.6633,-0.655287) break-angle 10
+zone face group   "Vent5=TopSlab" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_003_047" only by zone-face
+zone face hide true  group "Default=IF_003_078" only by zone-face
+zone face hide true  group "Default=IF_003_103" only by zone-face
+zone face hide true  group "Default=IF_003_079" only by zone-face
+
+zone face select  skin begin (45.8729,-341.341,109.596) direction (-0.469646,0.870181,-0.149057) break-angle 10
+zone face select  skin begin (78.1537,-313.651,106.335) direction (-0.936195,0.341706,-0.0823148) break-angle 10
+zone face select  skin begin (79.0839,-262.382,102.769) direction (-0.916084,-0.399461,-0.0349546) break-angle 10
+zone face select  skin begin (-19.8025,-321.854,103.491) direction (0.84552,0.530807,-0.0577941) break-angle 10
+zone face group   "Vent5=TopSideWall" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_006_006" and "Vent5=TopSlab" only by zone-face
+zone face select  skin begin (27.9994,-305.809,145.505) direction (-0.19146,0.308898,-0.931625) break-angle 10
+zone face select  skin begin (27.9708,-305.886,145.476) direction (-0.265245,0.0886938,-0.960093) break-angle 10
+zone face select  skin begin (28.0498,-305.887,145.47) direction (-0.0462008,0.0875854,-0.995085) break-angle 10
+zone face group   "Vent5=TopBaseSlab" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face hide off internal use-hidden-zones
+zone face hide true  group "Default=IF_001_016" only by zone-face
+zone face hide true  group "Default=IF_003_046" and "Vent5=TopSideWall" only by zone-face
+zone face select  skin begin (12.2517,-366.777,98.8695) direction (0.166053,0.94566,-0.27956) break-angle 30
+zone face group   "Vent5=Shaft" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "Vent5_Excavation1=Top" or "Vent5_Excavation2=Section4" or "Vent5_Excavation3=Section4"
+zone face select  skin begin (107.776,-330.012,124.165) direction (-0.873922,0.321964,-0.364142) break-angle 10
+zone face group   "Vent5=BH1" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group  "Vent5_Excavation2=Section3" or  "Vent5_Excavation3=Section3"
+zone face select  skin begin (128.882,-358.33,140.798) direction (-0.801185,0.476901,-0.361479) break-angle 10
+zone face group   "Vent5=BH2" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "Vent5_Excavation2=Section1" or "Vent5_Excavation3=Section1"
+zone face select  skin begin (46.1696,-415.915,138.723) direction (-0.211578,0.909586,-0.357614) break-angle 10
+zone face group   "Vent5=BH3" internal range selected
+zone face select  off internal use-hidden-zones
+
+; set environments
+zone hide off range use-hidden
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+
+zone hide true group  "Vent5_Excavation1=Top" or "Vent5_Excavation2=Section1" or "Vent5_Excavation2=Section2" or "Vent5_Excavation2=Section3" or "Vent5_Excavation2=Section4" or ...
+                      "Vent5_Excavation3=Section3" or  "Vent5Conn=Upper" or "Vent5_Excavation1=Top"
+
+
+zone face hide true  group "Default=IF_016_016" only by zone-face
+zone face select  skin begin (33.6079,-330.527,88.3452) direction (-0.339547,0.775577,-0.532154) break-angle 10
+zone face select  skin begin (33.6689,-330.518,88.3242) direction (-0.169397,0.795237,-0.582153) break-angle 10
+zone face group   "Vent5=Slab1" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face select  skin begin (24.4991,-325.133,6.32608) direction (-0.0705261,0.509059,0.857837) break-angle 10
+zone face group   "Vent5=Base" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "1=ZG_015" and "Structure=HR" and "Vent5_Excavation4=Base" only by zone
+zone hide true  group "1=ZG_016" and "Structure=HR" and "Vent5Conn=Lower" only by zone
+zone face select  skin begin (27.6559,-332.242,34.2085) direction (-0.262688,0.771714,0.579183) break-angle 10
+zone face select  skin begin (27.7212,-332.237,34.2048) direction (-0.0886259,0.796735,0.597794) break-angle 10
+zone face group   "Vent5=Slab2" internal range selected
+zone face select  off internal use-hidden-zones
+;
+
+zone face hide off internal use-hidden-zones
+
+; generate shell
+struct shell create by-zone-face element-type dkt-cst ID 511 internal range group "Vent5=TopSlab"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+struct shell create by-zone-face element-type dkt-cst ID 512 internal range group "Vent5=TopSideWall"
+struct shell create by-zone-face element-type dkt-cst ID 513 internal range group "Vent5=TopBaseSlab"
+struct shell create by-zone-face element-type dkt-cst ID 521 internal range group "Vent5=Shaft"
+struct shell create by-zone-face element-type dkt-cst ID 522 internal range group "Vent5=Base"
+struct shell create by-zone-face element-type dkt-cst ID 531 internal range group "Vent5=BH1"
+struct shell create by-zone-face element-type dkt-cst ID 532 internal range group "Vent5=BH2"
+struct shell create by-zone-face element-type dkt-cst ID 533 internal range group "Vent5=BH3"
+struct shell create by-zone-face element-type dkt-cst ID 541 internal range group "Vent5=Slab1"
+struct shell create by-zone-face element-type dkt-cst ID 542 internal range group "Vent5=Slab2"
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Vent6
+
+
+zone face select  skin begin (51.2466,-134.113,158.206) direction (-0.509675,0.0573731,-0.858452) break-angle 10
+zone face group   "Vent6=TopSlab" internal range selected
+zone face select  off internal use-hidden-zones
+;
+zone face hide true  group "Default=IF_003_093" only by zone-face
+zone face hide true  group "Default=IF_003_091" only by zone-face
+zone face hide true  group "Default=IF_003_094" only by zone-face
+zone face hide true  group "Default=IF_003_092" only by zone-face
+zone face select  skin begin (70.2391,-191.919,117.724) direction (-0.546047,0.811941,-0.206362) break-angle 10
+zone face select  skin begin (30.8324,-58.149,103.655) direction (-0.159403,-0.986401,-0.0400389) break-angle 10
+zone face select  skin begin (-48.7343,-93.8022,126.899) direction (0.808079,-0.496458,-0.317076) break-angle 10
+zone face select  skin begin (-60.5813,-222.277,118.382) direction (0.66999,0.728593,-0.142359) break-angle 10
+zone face group   "Vent6=TopSideWall" internal range selected
+zone face select  off internal use-hidden-zones
+;
+zone face hide true  group "Default=IF_003_069" and "Vent6=TopSlab" only by zone-face
+zone face hide true  group "Default=IF_008_071" and "Vent6=TopSlab" only by zone-face
+zone face select  skin begin (24.7439,-136.202,140.94) direction (-0.218742,0.210293,-0.952853) break-angle 10
+zone face select  skin begin (24.818,-136.191,140.936) direction (0.0424166,0.253723,-0.966346) break-angle 10
+zone face select  skin begin (24.818,-136.266,140.927) direction (0.019489,0.000886051,-0.99981) break-angle 10
+zone face select  skin begin (24.7504,-136.267,140.932) direction (-0.194618,0.000948665,-0.980879) break-angle 10
+zone face group   "Vent6=TopBaseSlab" internal range selected
+zone face select  off internal use-hidden-zones
+;
+
+zone face select  off internal use-hidden-zones
+zone face hide off internal use-hidden-zones
+zone face hide true  group "Default=IF_001_016" only by zone-face
+zone face hide true  group "Default=IF_003_069" and "Vent6=TopSideWall" only by zone-face
+zone face hide true  group "Default=IF_003_069" and "Vent6=TopBaseSlab" only by zone-face
+zone face select  skin begin (119.336,-108.586,112.153) direction (-0.928445,-0.203986,-0.310449) break-angle 45
+zone face group   "Vent6=Shaft" internal range selected
+zone face select  off internal use-hidden-zones
+;
+
+
+zone hide true  group "Vent6_Excavation1=Top" or "Vent6_Excavation2=Section4" or "Vent6_Excavation3=Section4"
+zone face select  skin begin (55.1722,-174.462,122.871) direction (-0.534068,0.701755,-0.471499) break-angle 10
+zone face group   "Vent6=BH1" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group  "Vent6_Excavation2=Section3" or  "Vent6_Excavation3=Section3"
+zone face select  skin begin (86.7161,-157.438,101.302) direction (-0.896377,0.396861,-0.197507) break-angle 10
+zone face group   "Vent6=BH2" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "Vent6_Excavation2=Section1" or "Vent6_Excavation3=Section2"
+zone face select  skin begin (53.1131,-174.521,98.7141) direction (-0.633387,0.765161,-0.115535) break-angle 10
+zone face group   "Vent6=BH3" internal range selected
+zone face select  off internal use-hidden-zones
+;
+; set environments
+zone hide off range use-hidden
+zone hide true  group "1=ZG_004" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_008" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_003" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_005" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+;
+
+zone face select  skin begin (53.4965,-157.48,10.6358) direction (-0.517685,0.508389,0.688144) break-angle 10
+zone face group   "Vent6=Base" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "1=ZG_020" and "Structure=HR" and "Vent6_Excavation5=Base" only by zone
+zone face select  skin begin (63.0086,-180.636,18.7598) direction (-0.544921,0.690284,0.475993) break-angle 10
+zone face group   "Vent6=Slab3" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "1=ZG_023" and "Structure=HR" and "Vent6_Excavation4=Base" only by zone
+zone hide true  group "1=ZG_016" and "Structure=HR" and "Vent6Conn=Lower" only by zone
+zone hide true  group "1=ZG_040" and "Structure=HR" and "Vent6_Excavation3=Section3" only by zone
+zone face select  skin begin (13.0306,-145.259,39.1319) direction (0.168934,0.476238,0.862936) break-angle 10
+zone face select  skin begin (13.095,-145.253,39.1093) direction (0.390748,0.491192,0.77849) break-angle 10
+zone face group   "Vent6=Slab2" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true  group "1=ZG_100" and "Structure=HR" and "Vent6_Excavation3=Section2" only by zone
+zone hide true  group "1=ZG_076" and "Structure=HR" and "Vent6_Excavation3=Section1" only by zone
+zone hide true  group "1=ZG_035" and "Structure=HR" and "Vent6_Excavation3=Section4" only by zone
+zone hide true  group "1=ZG_107" and "Structure=HR" and "Vent6_Excavation2=Section3" only by zone
+
+zone face hide true  group "Default=IF_016_016" only by zone-face
+zone face select  skin begin (21.9665,-156.291,53.9946) direction (-0.125357,0.917898,0.376495) break-angle 10
+zone face select  skin begin (22.0151,-156.278,54.0015) direction (0.0552916,0.916589,0.395989) break-angle 10
+zone face group   "Vent6=Slab1" internal range selected
+zone face select  off internal use-hidden-zones
+zone face hide off internal use-hidden-zones
+
+; generate shell
+struct shell create by-zone-face element-type dkt-cst ID 611 internal range group "Vent6=TopSlab"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+struct shell create by-zone-face element-type dkt-cst ID 612 internal range group "Vent6=TopSideWall"
+struct shell create by-zone-face element-type dkt-cst ID 613 internal range group "Vent6=TopBaseSlab"
+struct shell create by-zone-face element-type dkt-cst ID 621 internal range group "Vent6=Shaft"
+struct shell create by-zone-face element-type dkt-cst ID 622 internal range group "Vent6=Base"
+struct shell create by-zone-face element-type dkt-cst ID 631 internal range group "Vent6=BH1"
+struct shell create by-zone-face element-type dkt-cst ID 632 internal range group "Vent6=BH2"
+struct shell create by-zone-face element-type dkt-cst ID 633 internal range group "Vent6=BH3"
+struct shell create by-zone-face element-type dkt-cst ID 641 internal range group "Vent6=Slab1"
+struct shell create by-zone-face element-type dkt-cst ID 642 internal range group "Vent6=Slab2"
+struct shell create by-zone-face element-type dkt-cst ID 643 internal range group "Vent6=Slab3"
+
+zone delete range use-hidden group "Vent5_Excavation1=Top" or "Vent5_Excavation2=Section4" or "Vent5_Excavation3=Section4" or "Vent5_Excavation4=Base"
+zone delete range use-hidden group "Vent5_Excavation1=Section1" or "Vent5_Excavation2=Section1" or "Vent5_Excavation3=Section1"
+zone delete range use-hidden group "Vent5_Excavation1=Section2" or "Vent5_Excavation2=Section2" or "Vent5_Excavation3=Section2"
+zone delete range use-hidden group "Vent5_Excavation1=Section3" or "Vent5_Excavation2=Section3" or "Vent5_Excavation3=Section3"
+
+zone delete range use-hidden group "Vent6_Excavation1=Top" or "Vent6_Excavation2=Section4" or "Vent6_Excavation3=Section4" or "Vent6_Excavation4=Base" or "Vent6_Excavation5=Base"
+zone delete range use-hidden group "Vent6_Excavation1=Section1" or "Vent6_Excavation2=Section1" or "Vent6_Excavation3=Section1"
+zone delete range use-hidden group "Vent6_Excavation1=Section2" or "Vent6_Excavation2=Section2" or "Vent6_Excavation3=Section2"
+zone delete range use-hidden group "Vent6_Excavation1=Section3" or "Vent6_Excavation2=Section3" or "Vent6_Excavation3=Section3"
+
+zone hide off range use-hidden
+model save '[2-3]_.sav'
+
+
+
+

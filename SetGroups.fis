@@ -1,0 +1,181 @@
+zone group "AlluvialClay" slot "Concourse"  range group "ZG_067" or "ZG_062" or "ZG_063" or "ZG_066" or "ZG_074" or "ZG_075" slot "1"
+zone group "AlluvialSand" slot "Concourse"  range group "ZG_085" or "ZG_082" or "ZG_080" or "ZG_084" or "ZG_088" or "ZG_054" or "ZG_053" or "ZG_055" or "ZG_051" or "ZG_050" or "ZG_048" slot "1"
+
+zone group "Fill" slot "EXIT1" range group "ZG_010" slot "1"
+zone group "Fill" slot "EXIT2" range group "ZG_014" slot "1"
+zone group "Fill" slot "EXIT3" range group "ZG_011" slot "1"
+zone group "Fill" slot "EXIT4" range group "ZG_013" slot "1"
+zone group "Fill" slot "EXIT5" range group "ZG_012" slot "1"
+
+zone group "AlluvialClay" slot "EXIT1" range group "ZG_038" slot "1"
+zone group "AlluvialClay" slot "EXIT4&5" range group "ZG_036" slot "1"
+
+
+zone group "AlluvialClay" slot "Vent5Wall" range group "ZG_006" slot "1"
+
+zone group "Shaft"     slot "MainShaft_Excavation1" range group "ZG_049" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation1" range group "ZG_087" or "ZG_072" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation1" range group "ZG_086" or "ZG_068" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation1" range group "ZG_083" or "ZG_064" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation1" range group "ZG_061" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation1" range group "ZG_056" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation1" range group "ZG_052" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation1" range group "ZG_073" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation1" range group "ZG_065" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation1" range group "ZG_059" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation1" range group "ZG_090" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation1" range group "ZG_081" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation1" range group "ZG_060" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation1" range group "ZG_057" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation2" range group "ZG_101" or "ZG_121" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation2" range group "ZG_142" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation2" range group "ZG_102" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation2" range group "ZG_104" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation2" range group "ZG_140" or "ZG_177" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation2" range group "ZG_139" or "ZG_167" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation2" range group "ZG_138" or "ZG_188" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation2" range group "ZG_127" or "ZG_193" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation2" range group "ZG_141" or "ZG_195" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation2" range group "ZG_120" or "ZG_204" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation2" range group "ZG_126" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation2" range group "ZG_122" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation2" range group "ZG_155" or "ZG_191" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation2" range group "ZG_147" or "ZG_202" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation3" range group "ZG_115" or "ZG_124" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation3" range group "ZG_208" or "ZG_222" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation3" range group "ZG_166" or "ZG_190" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation3" range group "ZG_192" or "ZG_221" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation3" range group "ZG_189" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation3" range group "ZG_181" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation3" range group "ZG_205" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation3" range group "ZG_194" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation3" range group "ZG_206" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation3" range group "ZG_220" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation3" range group "ZG_226" or "ZG_229" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation3" range group "ZG_227" or "ZG_228" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation3" range group "ZG_216" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation3" range group "ZG_203" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation4" range group "ZG_148" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation4" range group "ZG_185" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation4" range group "ZG_196" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation4" range group "ZG_207" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation4" range group "ZG_199" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation4" range group "ZG_212" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation4" range group "ZG_218" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation4" range group "ZG_209" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation4" range group "ZG_197" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation4" range group "ZG_225" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation4" range group "ZG_217" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation4" range group "ZG_230" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation4" range group "ZG_210" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation4" range group "ZG_219" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation5" range group "ZG_129" or "ZG_111" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation5" range group "ZG_163" or "ZG_162" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation5" range group "ZG_161" or "ZG_159" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation5" range group "ZG_201" or "ZG_213" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation5" range group "ZG_211" or "ZG_175" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation5" range group "ZG_184" or "ZG_158" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation5" range group "ZG_224" or "ZG_187" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation5" range group "ZG_172" or "ZG_143" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation5" range group "ZG_173" or "ZG_150" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation5" range group "ZG_214" or "ZG_183" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation5" range group "ZG_176" or "ZG_160" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation5" range group "ZG_215" or "ZG_186" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation5" range group "ZG_180" or "ZG_151" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation5" range group "ZG_223" or "ZG_198" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation6" range group "ZG_099" or "ZG_045" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation6" range group "ZG_144" or "ZG_119" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation6" range group "ZG_133" or "ZG_112" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation6" range group "ZG_200" or "ZG_164" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation6" range group "ZG_152" or "ZG_117" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation6" range group "ZG_132" or "ZG_109" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation6" range group "ZG_179" or "ZG_136" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation6" range group "ZG_128" or "ZG_118" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation6" range group "ZG_125" or "ZG_110" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation6" range group "ZG_149" or "ZG_131" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation6" range group "ZG_135" or "ZG_134" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation6" range group "ZG_165" or "ZG_137" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation6" range group "ZG_130" or "ZG_116" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation6" range group "ZG_174" or "ZG_145" slot "1"
+;
+zone group "Shaft"     slot "MainShaft_Excavation7" range group "ZG_018" slot "1"
+zone group "ShaftBHL1" slot "MainShaft_Excavation7" range group "ZG_028" slot "1"
+zone group "ShaftBHL2" slot "MainShaft_Excavation7" range group "ZG_024" slot "1"
+zone group "ShaftBHL3" slot "MainShaft_Excavation7" range group "ZG_030" slot "1"
+zone group "ShaftBHR1" slot "MainShaft_Excavation7" range group "ZG_021" slot "1"
+zone group "ShaftBHR2" slot "MainShaft_Excavation7" range group "ZG_026" slot "1"
+zone group "ShaftBHR3" slot "MainShaft_Excavation7" range group "ZG_032" slot "1"
+zone group "ShaftMC1"  slot "MainShaft_Excavation7" range group "ZG_022" slot "1"
+zone group "ShaftMC2"  slot "MainShaft_Excavation7" range group "ZG_019" slot "1"
+zone group "ShaftMC3"  slot "MainShaft_Excavation7" range group "ZG_027" slot "1"
+zone group "ELShaftL1" slot "MainShaft_Excavation7" range group "ZG_031" slot "1"
+zone group "ELShaftL2" slot "MainShaft_Excavation7" range group "ZG_034" slot "1"
+zone group "ELShaftR1" slot "MainShaft_Excavation7" range group "ZG_025" slot "1"
+zone group "ELShaftR2" slot "MainShaft_Excavation7" range group "ZG_029" slot "1"
+;
+zone group "Top"      slot "Vent6_Excavation1" range group "ZG_071" or "ZG_069" slot 1
+zone group "Section1" slot "Vent6_Excavation2" range group "ZG_091" or "ZG_171" or "ZG_123" or "ZG_106" slot 1
+zone group "Section2" slot "Vent6_Excavation2" range group "ZG_092" or "ZG_108" slot 1
+zone group "Section2" slot "Vent6_Excavation2" range group "1=ZG_001" and "Layer=HR" and "Structure=HR" only by zone
+zone group "Section3" slot "Vent6_Excavation2" range group "ZG_094" or "ZG_178" or "ZG_113" or "ZG_107" slot 1
+zone group "Section4" slot "Vent6_Excavation2" range group "ZG_093" or "ZG_157" or "ZG_114" or "ZG_077" slot 1
+zone group "Section1" slot "Vent6_Excavation3" range group "ZG_076" slot 1
+zone group "Section2" slot "Vent6_Excavation3" range group "ZG_100" slot 1
+zone group "Section3" slot "Vent6_Excavation3" range group "ZG_040" slot 1
+zone group "Section4" slot "Vent6_Excavation3" range group "ZG_035" slot 1
+zone group "Base" slot "Vent6_Excavation4" range group "ZG_023" slot 1
+zone group "Base" slot "Vent6_Excavation5" range group "ZG_020" slot 1
+;
+zone group "Top"      slot "Vent5_Excavation1" range group "1=ZG_006" and "Layer=AlluvialClay" and "Structure=AlluvialClay" and "Vent5Wall=AlluvialClay" only by zone
+zone group "Top"      slot "Vent5_Excavation1" range group "1=ZG_046"
+zone group "Section1" slot "Vent5_Excavation2" range group "1=ZG_079"
+zone group "Section1" slot "Vent5_Excavation2" range group "1=ZG_182"
+zone group "Section1" slot "Vent5_Excavation2" range group "1=ZG_154"
+zone group "Section1" slot "Vent5_Excavation2" range group "1=ZG_098"
+zone group "Section2" slot "Vent5_Excavation2" range group "1=ZG_103"
+zone group "Section2" slot "Vent5_Excavation2" range group "1=ZG_169"
+zone group "Section2" slot "Vent5_Excavation2" range group "1=ZG_156"
+zone group "Section2" slot "Vent5_Excavation2" range group "1=ZG_097"
+zone group "Section3" slot "Vent5_Excavation2" range group "1=ZG_047"
+zone group "Section3" slot "Vent5_Excavation2" range group "1=ZG_168"
+zone group "Section3" slot "Vent5_Excavation2" range group "1=ZG_146"
+zone group "Section3" slot "Vent5_Excavation2" range group "1=ZG_095"
+zone group "Section4" slot "Vent5_Excavation2" range group "1=ZG_078"
+zone group "Section4" slot "Vent5_Excavation2" range group "1=ZG_170"
+zone group "Section4" slot "Vent5_Excavation2" range group "1=ZG_153"
+zone group "Section4" slot "Vent5_Excavation2" range group "1=ZG_096"
+zone group "Section1" slot "Vent5_Excavation3" range group "1=ZG_044"
+zone group "Section2" slot "Vent5_Excavation3" range group "1=ZG_043"
+zone group "Section3" slot "Vent5_Excavation3" range group "1=ZG_042"
+zone group "Section4" slot "Vent5_Excavation3" range group "1=ZG_041"
+zone group "Base" slot "Vent5_Excavation4" range group "1=ZG_015"
+;
+zone group 'Upper' slot 'Vent5Conn' range group '1=ZG_016' and 'Structure=HR' geometry-space 'Vent5ConnUpper' count odd direction (0.37,0.11,0.93)
+zone group 'Lower' slot 'Vent5Conn' range group '1=ZG_016' and 'Structure=HR' geometry-space 'Vent5ConnLower' count odd direction (0.37,0.11,0.93)
+
+zone group 'Upper' slot 'Vent6Conn' range group '1=ZG_016' and 'Structure=HR' geometry-space 'Vent6ConnUpper' count odd direction (0.37,0.11,0.93)
+zone group 'Lower' slot 'Vent6Conn' range group '1=ZG_016' and 'Structure=HR' geometry-space 'Vent6ConnLower' count odd direction (0.37,0.11,0.93)
+;
+;zone hide true range group "None" slot "MainShaft_Excavation1" not
+;zone hide true range group "None" slot "MainShaft_Excavation2" not
+;zone hide true range group "None" slot "MainShaft_Excavation3" not
+;zone hide true range group "None" slot "MainShaft_Excavation4" not
+;zone hide true range group "None" slot "MainShaft_Excavation5" not
+;zone hide true range group "None" slot "MainShaft_Excavation6" not
+;zone hide true range group "None" slot "MainShaft_Excavation7" not
+;
+;zone hide true range group "None" slot "Vent6_Excavation1" not
+;zone hide true range group "None" slot "Vent6_Excavation2" not
+;zone hide true range group "None" slot "Vent6_Excavation3" not
+;zone hide true range group "None" slot "Vent6_Excavation4" not
+;zone hide true range group "None" slot "Vent6_Excavation5" not
+;
+;zone hide true range group "None" slot "Vent5_Excavation1" not
+;zone hide true range group "None" slot "Vent5_Excavation2" not
+;zone hide true range group "None" slot "Vent5_Excavation3" not
+;zone hide true range group "None" slot "Vent5_Excavation4" not

@@ -1,0 +1,81 @@
+;model new
+;model rest '[2-4]_.sav'
+
+structure node join
+
+fish define delRecursiveLink
+      loop foreach nP struct.node.list()
+        lP = struct.node.link(nP) ; link pointer corresponding the node
+        if lP != null then
+        if struct.node.extra(nP,1) != 'checked' & struct.link.type(lP) = "Structure Node" then ; meet condition (0. node has link 1. not out of bound, 2. previously checked)
+;             io.out("=========================")
+;             io.out("Node pointer: " + string(nP) + " Node CID: " + string(struct.node.id.component(nP)))
+;             io.out(struct.node.element(nP))
+            arr    = array.create(10)
+            local arrIdx = 1
+            arr(arrIdx) = struct.node.id.component(nP)
+            arrIdx = arrIdx + 1
+            arr(arrIdx) = struct.link.target(lP)
+;            oo = io.out(lP)
+;            io.out("Target Node of Link " + string(lP) + " is " + string(arr(arrIdx)))
+            vRef = struct.node.pos.reference(nP) ; position of the reference node
+;            oo = io.out(vRef)
+
+            nPNext = struct.node.next(nP) ; nl is node pointer
+                  loop while nPNext != null
+;                        io.out("Node: " + string(nl))
+                        if struct.node.pos.reference(nPNext) = vRef & struct.node.extra(nPNext,1) != 'checked' & struct.node.link(nPNext,1) != null then  ; check node position with the reference node, proceed when same position
+                              struct.node.extra(nPNext,1) = 'checked' ; mark for do not check again
+                              
+                              arrIdx = arrIdx + 1
+                              arr(arrIdx) = struct.link.target(struct.node.link(nPNext,1))
+;                              vComp = struct.node.pos.reference(nl)
+;                              io.out("Position" + string(vComp))
+                              io.out("Node " + string(struct.node.id.component(nP)) + " & " + "Node " + string(struct.node.id.component(nPNext)) + " is same position")
+                              io.out(struct.node.link(nPNext,1))
+                        else
+;                              io.out("Skipped")                        
+                        endif
+                        nPNext = struct.node.next(nPNext)         ; move to next node                        
+                  end_loop
+;                  loop local ii (1, 10)
+;                        io.out(arr(ii))
+;                  end_loop
+                  
+                  local i = 2
+                  loop while i <= 10
+                        local v = arr(i)
+
+                        if v != 0 then
+                        local j = 1
+                              loop while j < i
+                                    if arr(j) == v then
+                                    dupNode = v
+;                                    io.out("duplicate = " + string(v) + " (at indices " + string(j) + " & " + string(i) + ")")
+                                    io.out("Node " + string(dupNode) + " is Recursive" )
+                                    io.out("Link No. " + string(struct.node.link(struct.node.find(dupNode))) + " Should be deleted")
+                                    io.out(struct.node.element(nP))
+                                    io.out("=========================")
+                                    recursiveLink = struct.node.link(struct.node.find(dupNode))
+                                          if recursiveLink != null then
+                                                struct.link.delete(recursiveLink)
+                                          endif
+                                    endif
+                              j = j + 1
+                              end_loop                              
+                        endif
+                        i = i + 1
+                  end_loop
+        else
+;           oo = io.out('Passed : checked before or No link')      
+        endif
+        endif
+      endloop
+end
+@delRecursiveLink
+
+zone hide off range use-hidden
+
+structure link create target zone
+
+;model save '[2-5]_.sav'

@@ -1,0 +1,18 @@
+; Run from the same FLAC3D project folder as the original [2-5] data file.
+; Keep DeleteRecursiveLinks_cycle.fis beside this file.
+; Original data files and the original [2-5] save are not overwritten.
+model new
+model restore '[2-4]_.sav'
+
+structure node join
+
+program call 'DeleteRecursiveLinks_cycle.fis'
+@drl_diagnose
+@delRecursiveLink
+@drl_assert_clean
+
+zone hide off range use-hidden
+structure link create target zone
+@drl_assert_clean
+
+model save '[2-5]_cyclefixed.sav'

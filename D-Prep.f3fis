@@ -1,0 +1,42 @@
+;Name: integrate
+;Purpose: Integrate a table
+;Diagram:
+;Arguments: int_in/int/1/table with original data
+;           int_out/int/2/table with integration
+;Note: This routine will integrate a table, outputting another table 
+;Note: containing the integration.  The resulting table will have the
+;Note: same number of points as the original.
+;
+fish define integrate(int_in,int_out)
+    local ii = table.delete(int_out)
+    local outp = table.get(int_out)
+    local inp = table.get(int_in)
+    local nitem = table.size(inp)
+    ;  
+    local vold = table.value(inp,1)
+    local val = 0.0
+    table.value(outp,1) = vector(comp.x(vold),val)
+    loop ii (2,nitem)
+        local vnew = table.value(inp,ii)
+        val = val + 0.5*(comp.y(vold) + comp.y(vnew))*(comp.x(vnew)-comp.x(vold))
+        table.value(outp,ii) = vector(comp.x(vnew),val)
+        vold = vnew
+    end_loop
+end
+;
+fish define G_cor(t_no,s_ca)
+  local ii_ = 1
+  local nt_ = table.size(t_no)
+  dt_ = table.x(t_no,2)-table.x(t_no,1)
+  dur_ = nt_*dt_
+  loop while ii_ <= nt_
+    table.y(t_no,ii_) = table.y(t_no,ii_)*s_ca
+    ii_= ii_+1
+  endloop
+end
+;
+fish define hist_skip
+;   local crit_dt = dynamic.timestep
+   local crit_dt = dynamic.time.total
+   global skip_n = int(dt_ / (crit_dt))
+end

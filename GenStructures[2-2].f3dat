@@ -1,0 +1,69 @@
+model new
+model restore '[2-1]_.sav'
+
+; Generate structures in MainShaft
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Main Shaft
+zone face hide true  group "Default=IF_001_018" only by zone-face
+zone face select  skin begin (93.0885,-240.015,144.498) direction (-0.613113,0.405099,-0.678224) break-angle 45
+zone face group   "MainShaft=SideWall" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (119.319,-244.355,140.502) direction (-0.864393,0.330324,-0.379093) break-angle 10
+zone face group   "MainShaft=TopSlab" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (63.866,-256.568,2.15787) direction (-0.340104,0.547273,0.764737) break-angle 10
+zone face group   "MainShaft=Base" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 401 internal range group "MainShaft=SideWall"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+struct shell create by-zone-face element-type dkt-cst ID 402 internal range group "MainShaft=TopSlab"
+struct shell create by-zone-face element-type dkt-cst ID 403 internal range group "MainShaft=Base"
+
+; BulkHead1
+;zone hide true range position-x 18.0 51.0 position-y -218.321 -196.321 position-z 60.0204 102.389
+zone hide true range group "1=ZG_054" or "1=ZG_106" or "1=ZG_134" or "1=ZG_135" ...
+                           or "1=ZG_142" or "1=ZG_162" or "1=ZG_145" or "1=ZG_114" ...
+                           or "1=ZG_100" or "1=ZG_043" or "1=ZG_020"
+
+zone face select  skin begin (100.77,-198.365,121.166) direction (-0.901693,-0.283033,-0.326867) break-angle 10
+zone face select  skin begin (82.1975,-247.972,128.207) direction (-0.624497,0.691657,-0.362786) break-angle 10
+zone face group   "MainShaft=BulkHead1L&R" internal range selected
+zone face select off internal use-hidden-zones
+
+; BulkHead2&3
+;zone hide true range position-x 29.5812 39.5812 position-y -191.0 -224.0 position-z 60.0203 102.389
+zone hide true range group "1=ZG_075" or "1=ZG_088" or "1=ZG_104" or "1=ZG_161" ...
+     or "1=ZG_191" or "1=ZG_201" or "1=ZG_176" or "1=ZG_164" ...
+     or "1=ZG_137" or "1=ZG_117" or "1=ZG_027" or "1=ZG_056" ...
+     or "1=ZG_139" or "1=ZG_171" or "1=ZG_199" or "1=ZG_223" ...
+     or "1=ZG_218" or "1=ZG_179" or "1=ZG_153" or "1=ZG_112" ...
+     or "1=ZG_029"
+
+zone face select  skin begin (57.6508,-218.815,131.703) direction (-0.669439,-0.00278191,-0.742862) break-angle 10
+zone face select  skin begin (57.6638,-218.641,131.721) direction (-0.577549,0.523542,-0.626371) break-angle 10
+zone face select  skin begin (8.20424,-232.525,143.187) direction (0.486436,0.578068,-0.655147) break-angle 10
+zone face select  skin begin (8.23393,-232.647,143.142) direction (0.571524,0.211083,-0.792972) break-angle 10
+zone face group   "MainShaft=BulkHead2&3L&R" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 411 internal range group "MainShaft=BulkHead1L&R"     ; "4" Shaft Main, "1" BulkHead, No. "1, 2, 3" 
+struct shell create by-zone-face element-type dkt-cst ID 412 internal range group "MainShaft=BulkHead2&3L&R"
+
+zone face hide off range use-hidden
+
+zone delete range group "1=ZG_054" or "1=ZG_106" or "1=ZG_134" or "1=ZG_135" ...
+                           or "1=ZG_142" or "1=ZG_162" or "1=ZG_145" or "1=ZG_114" ...
+                           or "1=ZG_100" or "1=ZG_043" or "1=ZG_020"
+
+zone delete range group "1=ZG_075" or "1=ZG_088" or "1=ZG_104" or "1=ZG_161" ...
+     or "1=ZG_191" or "1=ZG_201" or "1=ZG_176" or "1=ZG_164" ...
+     or "1=ZG_137" or "1=ZG_117" or "1=ZG_027" or "1=ZG_056" ...
+     or "1=ZG_139" or "1=ZG_171" or "1=ZG_199" or "1=ZG_223" ...
+     or "1=ZG_218" or "1=ZG_179" or "1=ZG_153" or "1=ZG_112" ...
+     or "1=ZG_029"
+
+model save '[2-2]_.sav'
+
+

@@ -1,0 +1,116 @@
+; GTX KINTEX Station 3D Modelling
+; Constructed by PPK in 2026.9
+
+model new
+
+program echo on
+
+model configure dynamic
+model deterministic off
+
+program thread automatic
+
+; import mesh made from Griddle
+
+zone import '261022-2.f3grid'
+;zone import 'GVol_260908_smoothed_v3_edge49924_candidate.f3grid' use-given-ids
+
+geometry import 'Fill_Bot.stl' set 'FillBot'
+geometry import 'AlluvialSand_UP.stl' set 'AlluvialSandTop'
+geometry import 'AlluvialSand_Bot.stl' set 'AlluvialSandBot'
+geometry import 'WeatheredSoil_Bot.stl' set 'WeatheredSoilBot'
+geometry import 'WeatheredRock_Top.stl' set 'WeatheredRockTop'
+geometry import 'WeatheredRock_Bot.stl' set 'WeatheredRockBot'
+geometry import 'SoftRock_Top.stl' set 'SoftRockTop'
+geometry import 'SoftRock_Bot.stl' set 'SoftRockBot'
+geometry import 'MainShaft.stl' set 'MainShaft'
+
+zone cmodel assign mohr-coulomb
+
+; Re-grouping
+zone group "Layer=Fill" range position-z 105.504 200.0
+zone group 'Layer=AlluvialClay' range group "1=ZG_007"
+zone group 'Layer=AlluvialClay' range ...
+          geometry-space 'AlluvialSandTop' count 1 direction (0,0,-1) ...
+          geometry-space 'FillBot' count 1 direction (0,0,1)
+
+zone group 'Layer=AlluvialSand' range ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandTop' count 1 direction (0,0,1)
+
+zone group 'Layer=WS' range ...
+          geometry-space 'WeatheredSoilBot' count 1 direction (0,0,-1) ...
+          geometry-space 'AlluvialSandBot' count 1 direction (0,0,1)
+
+zone group 'Layer=WR' range ...
+          geometry-space 'WeatheredRockBot' count 1 direction (0,0,-1) ...
+          geometry-space 'WeatheredRockTop' count 1 direction (0,0,1)
+
+zone group 'Layer=SR' range ...
+          geometry-space 'SoftRockBot' count 1 direction (0,0,-1) ...
+          geometry-space 'SoftRockTop' count 1 direction (0,0,1)
+
+zone group 'Layer=HR' range ...
+          geometry-space 'SoftRockBot' count 1 direction (0,0,1)
+
+; Grouping structural zones
+zone group 'Structure=Fill' range group "Layer=Fill" group "1=ZG_005" not 
+
+zone group 'Structure=AlluvialClay' ...
+    range group 'Layer=AlluvialClay' ...
+          group '1=ZG_006' not ...
+          group '1=ZG_007' not
+
+zone group 'Structure=AlluvialSand' range group "Layer=AlluvialSand" group "1=ZG_003" not 
+
+zone group 'Structure=WS' range group "Layer=WS" group "1=ZG_004" not 
+
+zone group 'Structure=WR' range group "Layer=WR" group "1=ZG_008" not 
+zone group 'Structure=SR' range group "Layer=SR" group "1=ZG_002" not 
+zone group 'Structure=HR' range group "Layer=HR" group "1=ZG_001" not 
+
+; Set properties
+fish define setDynProp(vdensity, vs, vpois, vcohesion, vphi, vtens, vgroup)
+   global gvDensity = vdensity
+   global gvCohesion = vcohesion
+   global gvPhi = vphi
+   global gvTens = vtens
+   global gvShearMod = vdensity*vs^2 
+   global gvBulkMod = (2*gvShearMod*(1+vpois))/(3*(1-2*vpois))
+   global gvGroup = vgroup
+  command
+      zone property density @gvDensity bulk @gvBulkMod shear @gvShearMod cohesion @gvCohesion friction @gvPhi tension @gvTens range group @gvGroup
+  end_command
+   
+end
+; argument order : density, vs, poisson's ratio, cohesion, friction angle(Deg), tension strength, group name(string)
+@setDynProp(1850, 260, 0.20, 1000, 35, 10.0, 'Fill')
+@setDynProp(1850, 300, 0.25, 1000, 35, 10.0, 'AlluvialClay')
+@setDynProp(1850, 400, 0.20, 1000, 35, 10.0, 'AlluvialSand')
+@setDynProp(1900, 550, 0.25, 20000, 37, 1000, 'WS')
+@setDynProp(1950, 650, 0.25, 50000, 38, 10000, 'WR')
+;@setDynProp(2050, 800, 0.25, 100000, 40, 10000, 'V_grade')
+;@setDynProp(2150, 1000, 0.25, 100000, 42, 50000, 'IV_grade')
+@setDynProp(2250, 1200, 0.25, 200000, 42, 50000, 'SR')
+@setDynProp(2300, 1500, 0.25, 200000, 42, 100000, 'HR')
+
+; Assign BC
+; x = -150 ~ 150, y = -50 ~ 350, z = 40.0
+zone face apply velocity-normal 0.0 range position-x -150.0
+zone face apply velocity-normal 0.0 range position-x 150.0
+zone face apply velocity-normal 0.0 range position-y -50.0
+zone face apply velocity-normal 0.0 range position-y -350.0
+zone face apply velocity-normal 0.0 range position-z 40.0
+
+; assign gravity
+model gravity 0 0 -9.81
+
+;
+model mechanical active on
+model dynamic active off
+model largestrain off
+
+; initial solve
+model solve elastic 
+
+model save '[1]_.sav'

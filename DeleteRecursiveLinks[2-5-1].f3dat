@@ -1,0 +1,87 @@
+; FLAC3D 9: find directed cycles by following actual node-to-node links.
+; Scope: side-1 links created by the default structure node join command.
+; Whole-link deletion is allowed only when EVERY link in that cycle is rigid
+; in all six DOFs. Partial attachments require a separate DOF-specific review.
+; Node-to-zone links are terminal connections and are never deleted here.
+; No coordinate comparison, node extras, or fixed-length arrays are used.
+;
+; Load these definitions AFTER model restore and structure node join:
+;   program call 'DeleteRecursiveLinks_cycle.fis'
+;   @drl_diagnose             ; read-only check of 26, 13462, 13514
+;   @drl_scan(false)          ; read-only cycle report
+;   @delRecursiveLink         ; delete one redundant link per rigid cycle
+;   @drl_assert_clean         ; fresh scan; stop if side-1 cycles remain
+fish define drl_next_node(np)
+    drl_next_node = null
+    local lp = struct.node.link(np,1)
+    if lp != null then
+        if struct.link.type(lp) = 'Structure Node' then
+            ; FISH returns the target component ID, not a node pointer.
+            local target_id = struct.link.target(lp)
+            local target_node = struct.node.find(target_id)
+            if target_node = null then
+                system.error = 'Cannot find target structural node ' + string(target_id)
+            endif
+            drl_next_node = target_node
+        endif
+    endif
+end
+fish define drl_scan(do_delete)
+    local completed = map()
+    local cycle_count = 0
+    local deleted_count = 0
+    ; Whole-link repair below is scoped to side 1. Refuse a repair if the
+    ; model also has node-to-node links on other sides: they need a combined
+    ; attachment analysis. Read-only side-1 reporting remains available.
+    if do_delete then
+        loop foreach local check_link struct.link.list()
+            if struct.link.type(check_link) = 'Structure Node' then
+                if struct.link.side(check_link) != 1 then
+                    system.error = 'Node-to-node links on other sides require a combined attachment analysis.'
+                endif
+            endif
+        endloop
+    endif
+    loop foreach local start_node struct.node.list()
+        local start_id = struct.node.id.component(start_node)
+        if map.has(completed,start_id) = false then
+            ; path is local to this walk. Reaching a completed walk is NOT
+            ; a cycle; repeating a node within THIS path is a cycle.
+            local path = map()
+            local current_node = start_node
+            loop while current_node != null
+                local current_id = struct.node.id.component(current_node)
+                if map.has(completed,current_id) then
+                    exit loop
+                endif
+                if map.has(path,current_id) then
+                    cycle_count = cycle_count + 1
+                    local cut_node = current_node
+                    local walk_node = current_node
+                    local all_rigid = true
+                    local description = ''
+                    ; Inspect only the closed cycle, excluding any incoming
+                    ; chain. Pick its lowest component ID deterministically.
+                    loop while true
+                        local walk_id = struct.node.id.component(walk_node)
+                        local walk_link = struct.node.link(walk_node,1)
+                        description = description + 'Node ' + string(walk_id)
+                        description = description + ' -- Link ' + string(struct.link.id.component(walk_link)) + ' --> '
+                        if walk_id < struct.node.id.component(cut_node) then
+                            cut_node = walk_node
+                        endif
+                        loop local dof (1,6)
+                            if struct.link.attach(walk_link,dof) != 2 then
+                                all_rigid = false
+                            endif
+                        endloop
+                        walk_node = drl_next_node(walk_node)
+                        if walk_node = current_node then
+                            exit loop
+                        endif
+                    endloop
+                    io.out('Closed node-to-node cycle:')
+                    io.out(description + 'Node ' + string(current_id))
+                    local cut_link = struct.node.link(cut_node,1)
+                    local cut_message = 'Link ' + string(struct.link.id.component(cut_link))
+                    cut_message = cut_message + ' on Node ' + string(struct.node.id.component(cut_node))

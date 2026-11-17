@@ -1,0 +1,13 @@
+
+# Ignore all subdirectories
+/*/
+
+# FLAC3D saves and backups
+*.sav
+*.sav.*
+*.backup
+*.bak
+*.bak.*
+*~
+/errorlog.dmp
+/errorlog.txt

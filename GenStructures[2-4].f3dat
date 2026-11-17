@@ -1,0 +1,151 @@
+model new
+model restore '[2-3]_.sav'
+
+; Hide soil layers to prevent intervention while selecting structural faces
+; Platform
+
+zone face select  skin begin (88.5179,-368.1,146.103) direction (-0.662157,0.466451,-0.586491) break-angle 20
+zone face select  skin begin (13.4438,-5.59294,116.427) direction (-0.184757,-0.897005,-0.401556) break-angle 20
+zone face group "Platform=End" internal range selected
+zone face hide internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_016_079" or "Default=IF_016_042"
+zone face select  skin begin (4.78401,-329.464,87.7748) direction (-0.14165,0.919153,-0.367549) break-angle 20
+zone face group "Platform=Upper" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (-4.56182,-363.934,-47.4282) direction (-0.00621496,0.701415,0.712726) break-angle 20
+zone face group "Platform=Invert" internal range selected
+zone face select off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 701 internal range group "Platform=End" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 702 internal range group "Platform=Invert" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 703 internal range group "Platform=Upper" use-hidden
+
+; MainTunnel
+zone face select  skin begin (87.5696,-294.316,275.629) direction (-0.3731,-0.0795291,-0.924376) break-angle 25
+zone face select  skin begin (-32.3972,-258.649,149.903) direction (0.13419,0.850024,-0.509365) break-angle 25
+zone face group "MainTunnel=Upper" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (67.5051,-369.923,-73.8409) direction (-0.47934,0.311713,0.820407) break-angle 10
+zone face select  skin begin (83.1911,-325.977,-100.339) direction (-0.3058,0.784348,0.539708) break-angle 10
+zone face group "MainTunnel=Invert" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 801 internal range group "MainTunnel=Invert" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 802 internal range group "MainTunnel=Upper" use-hidden
+
+
+;zone delete range group "1=ZG_033"
+
+; Vent5ToPlatform
+zone face hide true  group "Default=IF_001_016" and "Platform=Upper" only by zone-face
+zone face select  skin begin (8.82193,-332.477,85.7505) direction (-0.0106126,0.870964,-0.491232) break-angle 20
+zone face group "Vent5ConnShell=Upper" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (15.7922,-312.954,39.1537) direction (-0.141143,0.579295,0.802805) break-angle 10
+zone face group "Vent5ConnShell=BaseSlab" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 911 internal range group "Vent5ConnShell=Upper" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 913 internal range group "Vent5ConnShell=BaseSlab" use-hidden
+
+; Connect To Main Shaft
+zone face select  skin begin (17.77,-234.097,66.7583) direction (-0.258028,0.961242,-0.0971399) break-angle 20
+zone face group "ConnToMainShaftShell=Upper" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (39.7609,-230.675,28.3908) direction (-0.544419,0.510263,0.665763) break-angle 20
+zone face group "ConnToMainShaftShell=Lower" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 931 internal range group "ConnToMainShaftShell=Upper" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 932 internal range group "ConnToMainShaftShell=Lower" use-hidden
+
+; Vent6ToPlatform
+zone hide off range group "1=ZG_079" or "1=ZG_042"
+zone face select  skin begin (1.63028,-166.921,63.9183) direction (0.183366,0.982914,0.0160241) break-angle 20
+zone face group "Upper" slot "Vent6ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+zone face select  skin begin (13.1574,-149.954,49.2931) direction (-0.0935749,0.828924,0.551479) break-angle 10
+zone face group "BaseSlab" slot "Vent6ConnShell" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 921 internal range group "Vent6ConnShell=Upper" use-hidden
+struct shell create by-zone-face element-type dkt-cst ID 923 internal range group "Vent6ConnShell=BaseSlab" use-hidden
+
+
+
+
+; delete zone
+zone delete range use-hidden group 'Structure=Fill' or 'Structure=AlluvialClay' or 'Structure=AlluvialSand' ...
+                                   or 'Structure=WS' or 'Structure=WR' or 'Structure=SR' or 'Structure=HR'
+
+zone hide off range use-hidden
+
+; gen Concourse Column
+fish define genColumn(cor_x, cor_y, cor_zb)
+  sPt_top = struct.node.near(cor_x, cor_y, 102.389) ; get nearest shell node corresponds to the input coordinates
+  sPt_bot = struct.node.near(cor_x, cor_y, cor_zb) ; 
+
+  ; we will construct column using node ID of top and bottom slab
+  ; get pointer of shell node to be connected with column and translate into node id
+  ; push node id to glabal variable to be used for command that genearte column
+
+  global nodeIDtop = struct.node.id.component(sPt_top) ; get top slab node id
+  global nodeIDbot = struct.node.id.component(sPt_bot) ; get bot slab node id  
+
+  global beamNodePosTop = struct.node.pos(sPt_top)
+  global beamNodePosBot = struct.node.pos(sPt_bot)
+
+
+  oo = io.out('      ')
+  oo = io.out('Shell Node IDs')
+  oo = io.out(nodeIDtop)
+  oo = io.out(nodeIDbot)
+  oo = io.out('      ')
+
+  oo = io.out('Shell Node Pos')
+  oo = io.out(beamNodePosTop)
+  oo = io.out(beamNodePosBot)
+  oo = io.out('      ') 
+  
+  
+
+  command
+      struct beam create by-line @beamNodePosTop @beamNodePosBot id 3000 group 'A'
+;      struct node join       
+  end_command
+
+  global beamEndnode   = struct.node.maxid ; top
+  global beamEndnode_1 = struct.node.maxid - 1 ; bot
+
+  oo = io.out('      ')
+  oo = io.out('Beam Node IDs')
+  oo = io.out(beamEndnode)
+  oo = io.out(beamEndnode_1)
+  oo = io.out('      ')
+end
+
+ca "MakeGirder[2-4-1].fis"
+
+@genColumn(-21.9438,-213.821,93.8888)
+@genColumn(-21.9438,-200.821,93.8888)
+
+@genColumn(-14.4438,-213.821,93.8888)
+@genColumn(-14.4438,-200.821,93.8888)
+
+@genColumn(-6.94382,-213.821,93.8888)
+@genColumn(-6.94382,-200.821,93.8888)
+
+@genColumn(0.556176,-213.821,93.8888)
+@genColumn(0.556176,-200.821,93.8888)
+
+@genColumn(8.05618,-213.821,93.8888)
+@genColumn(8.05618,-200.821,93.8888)
+;; ConnectToShaft
+@genColumn(13.9812,-207.321,93.8888)
+@genColumn(18.5812,-207.321,93.8888)
+
+model save '[2-4]_.sav'

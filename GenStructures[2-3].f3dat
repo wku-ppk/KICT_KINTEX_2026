@@ -1,0 +1,130 @@
+model new
+model restore '[2-2]_.sav'
+
+; Generate structures in Vent
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Vent5
+zone face select  skin begin (45.812,-343.118,149.229) direction (-0.361431,0.6633,-0.655287) break-angle 10
+zone face group   "Vent5=TopSlab" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 511 internal range group "Vent5=TopSlab"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+
+zone hide true  range group "1=ZG_092" or "1=ZG_072" or "1=ZG_085" or "1=ZG_105"
+zone face select  skin begin (45.8729,-341.341,109.596) direction (-0.469646,0.870181,-0.149057) break-angle 30
+zone face select  skin begin (78.1537,-313.651,106.335) direction (-0.936195,0.341706,-0.0823148) break-angle 30
+zone face select  skin begin (79.0839,-262.382,102.769) direction (-0.916084,-0.399461,-0.0349546) break-angle 30
+zone face select  skin begin (-19.8025,-321.854,103.491) direction (0.84552,0.530807,-0.0577941) break-angle 30
+zone face group   "Vent5=TopSideWall" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 512 internal range group "Vent5=TopSideWall"
+
+zone face hide true range group "Default=IF_067_092" or "Default=IF_067_072" or "Default=IF_067_085" or "Default=IF_067_105"
+zone face select  skin begin (23.8527,-306.987,81.1752) direction (0.164582,0.329955,0.929539) break-angle 45
+zone face select  skin begin (23.8477,-306.885,81.1097) direction (0.131917,0.669328,0.731162) break-angle 45
+zone face select  skin begin (23.6712,-306.996,81.1777) direction (-0.428196,0.286088,0.857206) break-angle 45
+zone face group   "Vent5=TopBaseSlab" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 513 internal range group "Vent5=TopBaseSlab"
+
+; generate shell
+zone delete range group "1=ZG_076" or "1=ZG_067" use-hidden
+zone hide off  range group  "1=ZG_092" or "1=ZG_072" or "1=ZG_085" or "1=ZG_105"
+
+zone face hide true  group "Default=IF_001_049" only by zone-face
+zone face select  skin begin (-0.323036,-368.752,79.6027) direction (0.275623,0.961253,0.00504354) break-angle 25
+zone face group   "Vent5=Shaft" internal range selected
+struct shell create by-zone-face element-type dkt-cst ID 521 internal range group "Vent5=Shaft"
+zone face select  off internal use-hidden-zones
+
+zone face select  skin begin (38.0566,-318.979,8.87668) direction (-0.283224,0.436179,0.854127) break-angle 10
+zone face group   "Vent5=Base" internal range selected
+struct shell create by-zone-face element-type dkt-cst ID 522 internal range group "Vent5=Base"
+zone face select  off internal use-hidden-zones
+
+
+zone hide true range group "1=ZG_072" or "1=ZG_213" or "1=ZG_182" or "1=ZG_107" or "1=ZG_045"
+
+zone face select  skin begin (25.103,-333.31,50.7876) direction (-0.130637,0.92551,0.355478) break-angle 10
+zone face group   "Vent5=BH1" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face select  skin begin (10.6252,-349.91,64.49) direction (0.227032,0.971663,0.0657781) break-angle 10
+zone face group   "Vent5=BH2" internal range selected
+zone face select  off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 531 internal range group "Vent5=BH1"
+struct shell create by-zone-face element-type dkt-cst ID 532 internal range group "Vent5=BH2"
+
+;;;;
+zone hide true range group "1=ZG_085" or "1=ZG_226" or "1=ZG_175" or "1=ZG_109" or "1=ZG_051"
+zone face select  skin begin (23.3666,-314.548,63.8939) direction (-0.234827,0.970588,0.0530669) break-angle 45
+zone face group   "Vent5=BH3" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 533 internal range group "Vent5=BH3"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Vent6
+
+zone face select  skin begin (53.2522,-166.506,131.199) direction (-0.537073,0.692788,-0.481246) break-angle 10
+zone face group   "Vent6=TopSlab" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone hide true range group "1=ZG_096" or "1=ZG_095" or "1=ZG_094" or "1=ZG_093"
+zone face select  skin begin (65.8011,-163.549,127.643) direction (-0.68545,0.564288,-0.460149) break-angle 10
+zone face select  skin begin (5.81846,-178.958,113.117) direction (0.314507,0.913704,-0.257352) break-angle 10
+zone face select  skin begin (-30.0598,-133.407,115.559) direction (0.953572,0.105555,-0.28206) break-angle 10
+zone face select  skin begin (-6.16363,-76.8447,111.564) direction (0.478765,-0.861411,-0.169574) break-angle 10
+zone face group   "Vent6=TopSideWall" internal range selected
+zone face select  off internal use-hidden-zones
+
+zone face hide true range group "Default=IF_068_095" or "Default=IF_068_096" or "Default=IF_068_094" or "Default=IF_068_093"
+zone face select  skin begin (31.7168,-146.778,90.7991) direction (-0.372769,0.733777,0.567992) break-angle 45
+zone face select  skin begin (31.746,-146.712,90.7639) direction (-0.226054,0.906671,0.356157) break-angle 45
+zone face select  skin begin (31.6754,-146.782,90.7314) direction (-0.581345,0.764651,0.278114) break-angle 45
+zone face select  skin begin (31.6442,-146.838,90.7499) direction (-0.754784,0.546468,0.362869) break-angle 45
+zone face group   "Vent6=TopBaseSlab" internal range selected
+zone face select  off internal use-hidden-zones
+; generate shell
+struct shell create by-zone-face element-type dkt-cst ID 611 internal range group "Vent6=TopSlab"     ; "4" Shaft Main, "0" Main Structures, No. "1, 2, 3" SideWall ...
+struct shell create by-zone-face element-type dkt-cst ID 612 internal range group "Vent6=TopSideWall"
+struct shell create by-zone-face element-type dkt-cst ID 613 internal range group "Vent6=TopBaseSlab"
+
+zone delete range group "1=ZG_077" or "1=ZG_068"
+
+zone hide off range group "1=ZG_096" or "1=ZG_095" or "1=ZG_094" or "1=ZG_093"
+zone hide true range group "1=ZG_079" or "1=ZG_042"
+
+zone face hide true range group "Default=IF_079_136" or "Default=IF_079_099" or "Default=IF_042_101" or "Default=IF_042_097"
+zone face select  skin begin (-24.7132,-244.411,102.704) direction (0.400105,0.890303,-0.217433) break-angle 45
+zone face group   "Vent6=Shaft" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 621 internal range group "Vent6=Shaft"
+
+zone face select  skin begin (42.7261,-176.452,-86.0592) direction (-0.11737,0.323646,0.938871) break-angle 10
+zone face group   "Vent6=Base" internal range selected
+zone face select  off internal use-hidden-zones
+struct shell create by-zone-face element-type dkt-cst ID 622 internal range group "Vent6=Base"
+
+;;;;;
+
+zone hide true range group "1=ZG_096" or "1=ZG_214" or "1=ZG_122" or "1=ZG_111" or "1=ZG_041"
+zone face select  skin begin (38.4476,-181.054,126.256) direction (-0.317956,0.77227,-0.550003) break-angle 10
+zone face group   "Vent6=BH1" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (-2.684,-171.322,130.874) direction (0.464249,0.642566,-0.609574) break-angle 10
+zone face group   "Vent6=BH2" internal range selected
+zone face select  off internal use-hidden-zones
+zone hide true range group "1=ZG_094" or "1=ZG_192" or "1=ZG_141" or "1=ZG_099" or "1=ZG_101"
+zone face select  skin begin (13.1606,-191.962,107.012) direction (0.0519358,0.97884,-0.197926) break-angle 45
+zone face group   "Vent6=BH3" internal range selected
+zone face select  off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 631 internal range group "Vent6=BH1"
+struct shell create by-zone-face element-type dkt-cst ID 632 internal range group "Vent6=BH2"
+struct shell create by-zone-face element-type dkt-cst ID 633 internal range group "Vent6=BH3"
+
+model save '[2-3]_.sav'
+
+
+
+

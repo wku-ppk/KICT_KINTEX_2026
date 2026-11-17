@@ -1,0 +1,21 @@
+model new
+model rest '[4]_.sav'
+
+;--- dynamic run
+program thread automatic
+zone dynamic multi-step on
+
+;model dynamic timestep safety-factor 1.2 ;
+zone dynamic safety-factor 1.2
+structure dynamic-safety-factor 1.2 ;
+
+model dynamic time-total 0.0
+
+model solve dynamic time-total @goVia1 ; disp Max
+model save '[5]DynamicRun3D_T_Via1_5GX20MPa.sav'
+model solve dynamic time-total @goVia2 ; Acc. Max
+model save '[5]DynamicRun3D_T_Via2_5GX20MPa.sav'
+model solve dynamic time-total @goVia3 ; Vel. Max
+model save '[5]DynamicRun3D_T_Via3_5GX20MPa.sav'
+model solve dynamic time-total @dur_
+model save '[5]DynamicRun3D_T_Via4_5GX20MPa.sav'

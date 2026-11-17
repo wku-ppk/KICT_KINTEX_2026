@@ -1,0 +1,52 @@
+fish define make_beam(p0,p1,beam_id)
+
+    local tol = 0.01
+
+    local d = p1-p0
+    local L = math.mag(d)
+    local u = d/L
+
+    ; Reuse temporary table
+    local t = table.get('beam_nodes')
+    table.clear(t)
+
+    ; Find structural nodes along the line
+    loop foreach local sn struct.node.list
+
+        local p = struct.node.pos(sn)
+        local s = math.dot(p-p0,u)
+        local r = math.mag((p-p0)-u*s)
+
+        if s >= -tol then
+            if s <= L+tol then
+                if r <= tol then
+                    table(t,s) = struct.node.id.component(sn)
+                endif
+            endif
+        endif
+
+    endloop
+
+    ; Generate beams following table order
+    loop local i (1,table.size(t)-1)
+
+        local id1 = int(table.y(t,i))
+        local id2 = int(table.y(t,i+1))
+
+        local pa = struct.node.pos(struct.node.find(id1))
+        local pb = struct.node.pos(struct.node.find(id2))
+
+        command
+            structure beam create by-line [pa] [pb] ...
+                id [beam_id] group 'LineBeam'
+        endcommand
+
+    endloop
+
+end
+
+[make_beam(vector(-27.8688,-213.821,102.389), vector(8.05618,-213.821,102.389), 9001)]
+[make_beam(vector(-27.8688,-213.821,93.8888), vector(8.05618,-213.821,93.8888), 9002)]
+
+[make_beam(vector(-27.8688, -200.821, 102.389), vector(8.05618, -200.821, 102.389), 9001)]
+[make_beam(vector(-27.8688, -200.821, 93.8888), vector(8.05618, -200.821, 93.8888), 9002)]

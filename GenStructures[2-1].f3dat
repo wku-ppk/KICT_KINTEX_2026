@@ -1,0 +1,199 @@
+model new
+model restore '[1]_.sav'
+
+; Generate structures in Concourse and EXITS
+
+zone gridpoint initialize displacement-x 0.0
+zone gridpoint initialize displacement-y 0.0
+zone gridpoint initialize displacement-z 0.0
+zone gridpoint initialize displacement-z 0.0
+
+zone gridpoint initialize velocity-x 0.0
+zone gridpoint initialize velocity-y 0.0
+zone gridpoint initialize velocity-z 0.0
+
+; Hide soil layers to prevent intervention while selecting structural faces
+
+zone hide true  group "1=ZG_005" and "Layer=Fill" only by zone
+zone hide true  group "1=ZG_003" and "Layer=AlluvialSand" only by zone
+zone hide true  group "1=ZG_007" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_006" and "Layer=AlluvialClay" only by zone
+zone hide true  group "1=ZG_002" and "Layer=SR" only by zone
+zone hide true  group "1=ZG_004" and "Layer=WS" only by zone
+zone hide true  group "1=ZG_008" and "Layer=WR" only by zone
+zone hide true  group "1=ZG_001" and "Layer=HR" only by zone
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Concourse
+zone face hide true  group "Default=IF_003_062" only by zone-face
+zone face hide true  group "Default=IF_003_073" only by zone-face
+zone face select  skin begin (29.8223,-263.585,138.303) direction (-0.455615,0.739463,-0.49559) break-angle 0
+zone face group "Concourse=TopSlab" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_006_037" only by zone-face
+zone face hide true  group "Default=IF_003_102" only by zone-face
+zone face select  skin begin (-90.3711,-202.992,109.718) direction (0.96903,-0.105944,-0.223064) break-angle 10
+zone face select  skin begin (40.9339,-219.199,107.646) direction (-0.97287,0.0464603,-0.226638) break-angle 10
+zone face select  skin begin (92.2089,-219.61,120.855) direction (-0.92131,0.315363,-0.227452) break-angle 10
+zone face group "SideWall1" slot "Concourse" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_006_039" only by zone-face
+zone face hide true  group "Default=IF_003_089" only by zone-face
+zone face hide true  group "Default=IF_003_036" only by zone-face
+zone face select  skin begin (-0.37058,-146.225,103.42) direction (-0.190757,-0.979822,-0.0596754) break-angle 10
+zone face select  skin begin (12.5411,-298.803,113.955) direction (-0.355826,0.902343,-0.24324) break-angle 10
+zone face group "SideWall2" slot "Concourse" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face hide true  group "Default=IF_003_038" only by zone-face
+zone face select  skin begin (-68.4444,-231.817,19.7957) direction (0.536295,0.289738,0.792742) break-angle 10
+zone face group "BaseSlab" slot "Concourse" internal range selected
+zone face select off internal use-hidden-zones
+
+;generate shell in concourse
+struct shell create by-zone-face element-type dkt-cst ID 100 internal range group "TopSlab" slot "Concourse"
+struct shell create by-zone-face element-type dkt-cst ID 101 internal range group "SideWall1" slot "Concourse"
+struct shell create by-zone-face element-type dkt-cst ID 102 internal range group "SideWall2" slot "Concourse"
+struct shell create by-zone-face element-type dkt-cst ID 103 internal range group "BaseSlab" slot "Concourse"
+
+zone delete range position-x -27.8688 13.9812 position-y -228.021 -186.621 position-z 102.389 93.8888
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;set EXIT wall faces
+zone face hide off range use-hidden
+; EXIT1
+zone face select  skin begin (25.0394,-270.837,120.501) direction (-0.88926,0.345196,-0.300094) break-angle 0
+zone face select  skin begin (-75.3899,-274.269,97.7642) direction (0.868195,0.484591,0.10681) break-angle 0
+zone face group   "SideWall" slot "EXIT1" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (17.9458,-240.961,133.795) direction (-0.789982,0.0984606,-0.605173) break-angle 5
+zone face select  skin begin (17.9324,-241.014,133.799) direction (-0.817859,-0.0357519,-0.574307) break-angle 5
+zone face group   "Slab" slot "EXIT1" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (-60.6523,-244.355,57.6875) direction (0.671601,0.164708,0.722374) break-angle 5
+zone face select  skin begin (-84.1413,-271.612,32.1101) direction (0.643066,0.332455,0.689884) break-angle 5
+zone face group   "Base" slot "EXIT1" internal range selected
+zone face select  off internal use-hidden-zones
+
+; EXIT2
+zone face select  skin begin (-100.634,-166.463,117.778) direction (0.960192,-0.114335,-0.254869) break-angle 0
+zone face select  skin begin (37.2993,-135.806,125.576) direction (-0.767167,-0.510049,-0.388979) break-angle 0
+zone face group   "SideWall" slot "EXIT2" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (-79.2719,-165.492,157.361) direction (0.676718,-0.209207,-0.705893) break-angle 5
+zone face select  skin begin (-79.2435,-165.435,157.344) direction (0.708889,-0.0875391,-0.699866) break-angle 5
+zone face group   "Slab" slot "EXIT2" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (-86.241,-141.425,44.7313) direction (0.715545,-0.424113,0.555089) break-angle 5
+zone face select  skin begin (-86.2359,-141.38,44.754) direction (0.72551,-0.328746,0.604617) break-angle 5
+zone face group   "Base" slot "EXIT2" internal range selected
+zone face select  off internal use-hidden-zones
+; EXIT3
+zone face select  skin begin (24.4881,-122.094,126.937) direction (-0.140172,-0.903861,-0.404211) break-angle 40
+zone face select  skin begin (27.1245,-214.099,123.095) direction (-0.317095,0.625782,-0.712634) break-angle 40
+zone face group   "SideWall" slot "EXIT3" internal range selected
+zone face select  off internal use-hidden-zones
+zone face hide true  group "Default=EF_011" only by zone-face
+zone face select  skin begin (24.5683,-217.815,165.2) direction (0.0669822,0.432434,-0.899174) break-angle 45
+zone face group   "Slab" slot "EXIT3" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (73.6969,-141.397,39.6181) direction (-0.508037,-0.549636,0.663174) break-angle 45
+zone face group   "Base" slot "EXIT3" internal range selected
+zone face select  off internal use-hidden-zones
+
+; EXIT4&5Conn
+zone face hide true  group "Default=EF_014" only by zone-face
+zone face hide true  group "Default=EF_015" only by zone-face
+zone face select  skin begin (17.5636,-202.808,133.448) direction (0.253427,-0.636606,-0.728359) break-angle 20
+zone face select  skin begin (17.4846,-202.751,133.421) direction (-0.011162,-0.480067,-0.877161) break-angle 20
+zone face select  skin begin (-17.4815,-248.295,132.274) direction (0.792453,0.136689,-0.594419) break-angle 20
+zone face select  skin begin (2.54517,-252.488,111.167) direction (0.401018,0.839599,-0.366413) break-angle 20
+zone face group   "SideWall" slot "EXIT4&5Conn" internal range selected
+
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (104.201,-285.534,162.094) direction (-0.690549,0.444892,-0.570275) break-angle 45
+zone face group   "Slab" slot "EXIT4&5Conn" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (84.2939,-266.36,-21.0232) direction (-0.378421,0.184981,0.906962) break-angle 45
+zone face group   "Base" slot "EXIT4&5&Conn" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (70.7966,-272.361,111.31) direction (-0.719041,0.619968,-0.314038) break-angle 10
+zone face group   "EndWall" slot "EXIT4&5Conn" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (136.394,-171.055,131.713) direction (-0.69398,-0.668507,-0.267375) break-angle 10
+zone face select  skin begin (61.648,-345.193,143.705) direction (0.09745,0.934569,-0.342175) break-angle 10
+zone face group   "SideWall" slot "EXIT4" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (96.4259,-259.077,147.745) direction (-0.650415,0.246878,-0.718339) break-angle 35
+zone face group   "Slab" slot "EXIT4" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (86.0725,-349.12,144.814) direction (-0.5315,0.752747,-0.388433) break-angle 10
+zone face select  skin begin (-84.4246,-348.908,152.902) direction (0.761114,0.553476,-0.338187) break-angle 10
+zone face group   "SideWall" slot "EXIT5" internal range selected
+zone face select  off internal use-hidden-zones
+zone face select  skin begin (46.9873,-293.028,176.923) direction (-0.159813,0.435323,-0.885976) break-angle 45
+zone face group   "Slab" slot "EXIT5" internal range selected
+zone face select  off internal use-hidden-zones
+; generate shell
+struct shell create by-zone-face element-type dkt-cst ID 211 internal range group "EXIT1=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 212 internal range group "EXIT1=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 213 internal range group "EXIT1=Base"
+;zone delete range  use-hidden group "EXIT1=Fill" or "EXIT1=AlluvialClay" or "1=ZG_105"
+
+struct shell create by-zone-face element-type dkt-cst ID 221 internal range group "EXIT2=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 222 internal range group "EXIT2=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 223 internal range group "EXIT2=Base"
+;zone delete range  use-hidden group "1=ZG_039" or "EXIT2=Fill"
+
+struct shell create by-zone-face element-type dkt-cst ID 231 internal range group "EXIT3=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 232 internal range group "EXIT3=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 233 internal range group "EXIT3=Base"
+;zone delete range  use-hidden group "1=ZG_037" or "EXIT3=Fill"
+
+struct shell create by-zone-face element-type dkt-cst ID 2451 internal range group "EXIT4&5Conn=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 2452 internal range group "EXIT4&5Conn=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 2453 internal range group "EXIT4&5&Conn=Base"
+struct shell create by-zone-face element-type dkt-cst ID 2454 internal range group "EXIT4&5Conn=EndWall"
+
+struct shell create by-zone-face element-type dkt-cst ID 241 internal range group "EXIT4=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 242 internal range group "EXIT4=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 251 internal range group "EXIT5=SideWall"     ; "2" EXITS, "1" EXIT No. "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 252 internal range group "EXIT5=Slab"
+
+zone delete range group "Structure=Fill"
+zone delete range group "1=ZG_039" or "1=ZG_089" or "1=ZG_037" or "1=ZG_102" or "1=ZG_038" or "1=ZG_036"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;set Concourse to MainShaft
+
+zone face hide true  group "Default=IF_050_062" only by zone-face
+zone face hide true  group "Default=IF_050_073" only by zone-face
+zone face hide true  group "Default=IF_003_054" only by zone-face
+
+zone face select  skin begin (-3.57731,-250.998,122.169) direction (0.39236,0.822907,-0.410947) break-angle 10
+zone face group "ConnToMainShaft=Slab" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (-7.02469,-255.407,131.143) direction (0.425161,0.677112,-0.600631) break-angle 10
+zone face select  skin begin (-56.1985,-86.15,69.7412) direction (0.546597,-0.808974,0.216314) break-angle 10
+zone face group "ConnToMainShaft=SideWall" internal range selected
+zone face select off internal use-hidden-zones
+
+zone face select  skin begin (-13.4183,-216.587,68.7094) direction (0.745152,0.135372,0.653011) break-angle 10
+zone face group "ConnToMainShaft=Base" internal range selected
+zone face select off internal use-hidden-zones
+
+struct shell create by-zone-face element-type dkt-cst ID 301 internal range group "ConnToMainShaft=SideWall"     ; "3" Connection To Main Shaft, "0" Garbage "1, 2, 3" Wall, Slab, Base
+struct shell create by-zone-face element-type dkt-cst ID 302 internal range group "ConnToMainShaft=Slab"
+struct shell create by-zone-face element-type dkt-cst ID 303 internal range group "ConnToMainShaft=Base"
+
+
+
+zone delete range  use-hidden group "1=ZG_073" or "1=ZG_062"
+;;;;;
+
+model save '[2-1]_.sav'

@@ -1,0 +1,86 @@
+{
+  "before_save": "[4]_.sav",
+  "after_save": "[5]DynamicRun3D_T_Via4_5GX20MPa.sav",
+  "displacement_source": "position",
+  "before_bbox": {
+    "min_xyz": [
+      -185.55834330117975,
+      -385.5583433011798,
+      40.0
+    ],
+    "max_xyz": [
+      185.55834330117975,
+      -14.441656698820253,
+      108.69999694824207
+    ],
+    "representative_min_gp_ids_xyz": [
+      242001,
+      247657,
+      32
+    ],
+    "representative_max_gp_ids_xyz": [
+      244829,
+      250723,
+      44075
+    ]
+  },
+  "after_bbox": {
+    "min_xyz": [
+      -185.5605071152509,
+      -385.5601668090645,
+      39.99673189639253
+    ],
+    "max_xyz": [
+      185.57812785716447,
+      -14.4361264118202,
+      108.70281276233962
+    ],
+    "representative_min_gp_ids_xyz": [
+      253966,
+      249530,
+      19477
+    ],
+    "representative_max_gp_ids_xyz": [
+      244943,
+      250906,
+      26325
+    ]
+  },
+  "before_gridpoint_count": 235379,
+  "after_gridpoint_count": 235379,
+  "z_tolerance": 6.869999694824207e-05,
+  "boundary_selection": "BEFORE abs(z-z_min/max) <= tolerance; same IDs tracked in AFTER",
+  "bottom_count": 6560,
+  "top_count": 6574,
+  "z_bottom_mean_before": 40.0,
+  "z_top_mean_before": 108.69999694824197,
+  "mean_bottom_movement_xyz": [
+    0.001079150378969493,
+    0.0064451533118296,
+    6.481371540687563e-05
+  ],
+  "mean_top_movement_xyz": [
+    0.009505138664745635,
+    0.007116965582195692,
+    -0.0031210134051664422
+  ],
+  "mean_weighting": "equal weight per matched boundary gridpoint",
+  "remove_xyz": [
+    true,
+    true,
+    false
+  ],
+  "scale": 20.0,
+  "shell_structural_ids": [
+    703
+  ],
+  "shell_element_count": 1983,
+  "shell_node_count": 1105,
+  "shell_nodes_outside_boundary_mean_elevations": 0,
+  "max_pure_deformation_magnitude": 0.00407748487463313,
+  "outputs": {
+    "before_vtk": "C:\\Users\\DELL7875\\FLAC3D\\KICT2026\\newModel\\platformShellBefore.vtk",
+    "after_vtk": "C:\\Users\\DELL7875\\FLAC3D\\KICT2026\\newModel\\platformShellAfterPuredef.vtk",
+    "boundary_csv": "C:\\Users\\DELL7875\\FLAC3D\\KICT2026\\newModel\\platformShellBoundaryGridpoints.csv"
+  }
+}

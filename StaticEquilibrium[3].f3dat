@@ -1,0 +1,222 @@
+model new
+;model rest '[2-5]_.sav'
+
+model rest '[2-5]_cyclefixed.sav'
+
+;program echo on
+
+;model configure dynamic
+;model deterministic off
+
+;program thread automatic
+
+; Summarize Structural Element ID
+;SHELL
+;- Concourse -
+;100 "TopSlab", 101 "SideWall1", 102 "SideWall2", 103 "BaseSlab"
+
+;- EXIT1 -
+;211 "SideWall", 212 "Slab", 213 "Base"
+;- EXIT2 -
+;221 "SideWall", 222 "Slab", 223 "Base"
+;- EXIT3 -
+;231 "SideWall", 232 "Slab", 233 "Base"
+;- EXIT4 -
+;241 "SideWall", 242 "Slab"
+;- EXIT5 -
+;251 "SideWall", 252 "Slab"
+;- EXIT4&5Conn -
+;2451 "SideWall", 2452 "Slab", 2454 "EndWall"
+;- EXIT4&5$Conn - ; This contains base for EXIT 4, 5, and Common path
+; 2453 "Base"
+
+;- ConnToMainShaft -
+;301 "SideWall", 302 "Slab", 303 "Base"
+
+;- MainShaft -
+;401 "SideWall", 402 "TopSlab", 403 "Base"
+;411 "BulkHead1L&R", 412 "BulkHead2&3L&R"
+;421 "MainColumn"
+;431 "ELShaft"
+;441 "Slab_1", 442 "Slab_2", 443 "Slab_3", 444 "Slab_4", 445 "Slab_5"
+
+;- Vent5 -
+;511 "TopSlab", 512 "TopSideWall", 513 "TopBaseSlab"
+;521 "Shaft", 522 "Base"
+;531 "BH1", 532 "BH2", 533 "BH3"
+;541 "Slab1", 542 "Slab2"
+
+;- Vent6 -
+;611 "TopSlab", 612 "TopSideWall", 613 "TopBaseSlab"
+;621 "Shaft", 622 "Base"
+;631 "BH1", 632 "BH2", 633 "BH3"
+;641 "Slab1", 642 "Slab2", 643 "Slab3"
+
+;- Platform -
+;701 "End", 702 "Invert", 703 "Upper"
+
+;- MainTunnel -
+;801 "Invert", 802 "Upper"
+
+;- Vent5ConnShell -
+;911 "Upper", 912 "MidSlab", 913 "BaseSlab"
+
+;- Vent6ConnShell -
+;921 "Upper", 922 "MidSlab", 923 "BaseSlab"
+
+;- ConnToMainShaftShell -
+;931 "Upper", 932 "Lower"
+
+;- Concourse Columns -
+;3000 "A"
+
+;Set properties for MC model structures, for fck 30MPa, following ACI recommendation, E = 25.7GPa
+
+
+;[global bulkRC = 14.3E9] ; for 30MPa
+;[global bulkRC = 12.79E9] ; for 24MPa
+[global bulkRC = 11.68E9] ; for 20MPa
+;
+;[global shearRC = 10.73E9] ; for 30MPa
+;[global shearRC = 9.59E9] ; for 24MPa
+[global shearRC = 8.76E9] ; for 20MPa
+;
+;[global cohesionRC = 8E6] ; for 30MPa
+;[global cohesionRC = 6E6] ; for 24MPa
+[global cohesionRC = 5E6] ; for 20MPa
+;
+;[global fricRC = 34] ; for 30MPa
+;[global fricRC = 32] ; for 24MPa
+[global fricRC = 31] ; for 20MPa
+[global limitTens = cohesionRC/math.tan(fricRC*(math.pi()/180))]
+
+; Set Shell properties
+structure shell cmodel assign mohr-coulomb
+
+; Concourse
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	100 ; Concourse Top Slab
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	101 ; Concourse SideWalls1
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	102 ; Concourse SideWalls2
+struct	shell	property	density	2300	thickness	1.3	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	103 ; Concourse Base
+
+; EXITS
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id-list 211 221 231 241 251 ; EXIT #1~5 SideWalls
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	2451 ; EXIT #4&5 Conn SideWalls
+
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id-list 212 222 232 242 252 ; EXIT #1~5 Slabs
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	2452 ; EXIT #4&5 Slabs
+
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id-list 213 223 233 2453 ; EXIT #1~3, 4, 5 and Conn Base
+
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	2454 ; EXIT #4&5 Conn EndWall
+
+; ConnToMainShaft
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	302 ; ConcourseToShaft TopSlab
+struct	shell	property	density	2300	thickness	1.3	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	303 ; ConcourseToShaft BaseSlab
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	301 ; ConcourseToShaft SideWalls
+
+; MainShaft
+struct	shell	property	density	2300	thickness	0.9	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	401 ; Shaft SideWalls (Hoop)
+struct	shell	property	density	2300	thickness	1.2	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	402 ; Shaft TopSlab
+struct	shell	property	density	2300	thickness	1.0	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	403 ; Shaft Base
+
+; MainShaft BulkHead
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	411 ; Shaft BulkHead #1
+struct	shell	property	density	2300	thickness	0.4 bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	412 ; Shaft BulkHead Inside
+;struct	shell	property	density	2300	thickness	0.8 bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	421 ; Shaft MainColumns
+;struct	shell	property	density	2300	thickness	0.4 bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	431 ; Shaft Elevator Shaft
+
+; MainShaft Floors
+;struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	441 ; Shaft Slab #1
+;struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	442 ; Shaft Slab #2
+;struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	443 ; Shaft Slab #3
+;struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	444 ; Shaft Slab #4
+;struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	445 ; Shaft Slab #5
+
+; Platform
+struct	shell	property	density	2300	thickness	1.0	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	701 ; Platform Both END
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	703 ; Platform Upper
+struct	shell	property	density	2300	thickness	1.0	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	702 ; Platform Invert
+
+; MainTunnel
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	801 ; MainTunnel Invert
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	802 ; MainTunnel Upper
+
+
+; ConnToMainShaftShell
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	931 ; ConnToMainShaftShell Upper
+struct	shell	property	density	2300	thickness	0.7	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	932 ; ConnToMainShaftShell Base
+
+; Vent5
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	521 ; Vent5 Shaft
+struct	shell	property	density	2300	thickness	1.0	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	522 ; Vent5 Base
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	531 ; Vent5 BH1
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	532 ; Vent5 BH2
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	533 ; Vent5 BH3
+;struct	shell	property	density	2300	thickness	0.3	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	541 ; Vent5 Slab1
+;struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	542 ; Vent5 Slab2
+
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	511 ; Vent5 TopSlab
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	512 ; Vent5 TopSideWall
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	513 ; Vent5 TopBase
+
+; Vent6
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	621 ; Vent6 Shaft
+struct	shell	property	density	2300	thickness	1.0	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	622 ; Vent6 Base
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	631 ; Vent6 BH1
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	632 ; Vent6 BH2
+struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	633 ; Vent6 BH3
+;struct	shell	property	density	2300	thickness	0.3	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	641 ; Vent6 Slab1
+;struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	642 ; Vent6 Slab2
+;struct	shell	property	density	2300	thickness	0.4	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	643 ; Vent6 Slab3
+
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	611 ; Vent6 TopSlab
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	612 ; Vent6 TopSideWall
+struct	shell	property	density	2300	thickness	0.6	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	613 ; Vent6 TopBase
+
+;- Vent5ConnShell -
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	911 ; Vent5ConnShell Upper
+;struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	912 ; Vent5ConnShell MidSlab
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	913 ; Vent5ConnShell BaseSlab
+
+;- Vent6ConnShell -
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	921 ; Vent6ConnShell Upper
+;struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	922 ; Vent6ConnShell MidSlab
+struct	shell	property	density	2300	thickness	0.5	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens range id	923 ; Vent6ConnShell BaseSlab
+
+; Columns at Concourse
+structure beam cmodel assign mohr-coulomb range id 3000
+structure beam cmodel plastic-integration cross-section circular 0.8 layout 5 2 7 range id 3000
+
+struct	beam	property	cross-sectional-area	0.502654825	density	2300	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens direction-y (0,1,0) &
+                              moi-y	3.22E-01 moi-z	0.321699088	moi-polar 0.643   range id	3000 ; concourse column
+
+;struct	beam	property	cross-sectional-area	0.502654825	density	2300	young 2E10 poisson 0.2 direction-y	(0,1,0)	moi-y	3.22E-01 &
+;                              moi-z	0.321699088	moi-polar 0.643   range id	3000 ; concourse column
+
+
+; Girder at Concourse
+;structure beam cmodel assign mohr-coulomb range id 9001 9002
+structure beam cmodel assign elastic range id 9001 9002
+;structure beam cmodel plastic-integration cross-section rectangular 1.8 1.9 layout 5 2 7  range id 9001
+;structure beam cmodel plastic-integration cross-section rectangular 2.0 1.8 layout 5 2 7  range id 9002
+
+;struct	beam	property	cross-sectional-area	3.42	density	2300	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens direction-y (0,1,0) &
+;                              moi-y	0.92340 moi-z	1.02885	moi-polar 1.95225   range id	9001 ; 
+;struct	beam	property	cross-sectional-area	3.42	density	2300	bulk @bulkRC shear @shearRC cohesion @cohesionRC fric @fricRC tension @limitTens direction-y (0,1,0) &
+;                              moi-y	0.92340 moi-z	1.02885	moi-polar 1.95225   range id	9002 ; 
+                              
+struct	beam	property	cross-sectional-area	3.42	density	2300	young 25.7E9 poisson 0.2 direction-y (0,1,0) &
+                              moi-y	0.92340 moi-z	1.02885	moi-polar 1.95225   range id	9001 ; 
+struct	beam	property	cross-sectional-area	3.42	density	2300	young 25.7E9 poisson 0.2 direction-y (0,1,0) &
+                              moi-y	0.92340 moi-z	1.02885	moi-polar 1.95225   range id	9002 ; 
+
+model mechanical active on
+model dynamic active off
+model largestrain off
+
+; initial solve
+;model gravity 0 0 -9.81
+model solve
+
+model save '[3]_.sav'

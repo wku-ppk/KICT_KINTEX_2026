@@ -1,0 +1,162 @@
+;--- add history points
+step 1
+@hist_skip
+history interval @skip_n
+
+model history name 'time' dynamic time-total
+zone history name 'freeFieldAcc-x' acceleration-x position (15,-205,108.7)
+zone history name 'freeFieldAcc-y' acceleration-y position (15,-205,108.7)
+zone history name 'freeFieldAcc-z' acceleration-z position (15,-205,108.7)
+zone history name 'freeFieldVel-x' velocity-x position (15,-205,108.7)
+zone history name 'freeFieldVel-y' velocity-y position (15,-205,108.7)
+zone history name 'freeFieldVel-z' velocity-z position (15,-205,108.7)
+zone history name 'freeFieldDisp-x' displacement-x position (15,-205,108.7)
+zone history name 'freeFieldDisp-y' displacement-y position (15,-205,108.7)
+zone history name 'freeFieldDisp-z' displacement-z position (15,-205,108.7)
+
+;;;;
+
+zone history name 'ticketHallMidSoilAcc-x' acceleration-x position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilAcc-y' acceleration-y position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilAcc-z' acceleration-z position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilVel-x' velocity-x position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilVel-y' velocity-y position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilVel-z' velocity-z position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilDisp-x' displacement-x position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilDisp-y' displacement-y position (-33.7808,-199.86,97.687) ; ticket hall - soil
+zone history name 'ticketHallMidSoilDisp-z' displacement-z position (-33.7808,-199.86,97.687) ; ticket hall - soil
+
+structure node history name 'ticketHallMidSlabVel-x' velocity-x position (-27.8688, -200.821, 98.1388) ;  ticket hall - side wall 
+structure node history name 'ticketHallMidSlabVel-y' velocity-y position (-27.8688, -200.821, 98.1388) ;  ticket hall - side wall 
+structure node history name 'ticketHallMidSlabVel-z' velocity-z position (-27.8688, -200.821, 98.1388) ;  ticket hall - side wall 
+
+
+zone history name 'upperShaftSoilAcc-x' acceleration-x position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilAcc-y' acceleration-y position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilAcc-z' acceleration-z position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilVel-x' velocity-x position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilVel-y' velocity-y position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilVel-z' velocity-z position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilDisp-x' displacement-x position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilDisp-y' displacement-y position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+zone history name 'upperShaftSoilDisp-z' displacement-z position (52.2704, -199.95, 97.3483) ; Upper Shaft Soil
+structure node history name 'upperShaftWallVel-x' velocity-x position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+structure node history name 'upperShaftWallVel-y' velocity-y position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+structure node history name 'upperShaftWallVel-z' velocity-z position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+
+zone history name 'centerShaftSoilAcc-x' acceleration-x position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilAcc-y' acceleration-y position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilAcc-z' acceleration-z position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilVel-x' velocity-x position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilVel-y' velocity-y position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilVel-z' velocity-z position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilDisp-x' displacement-x position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilDisp-y' displacement-y position (52.2111, -201.454, 84) ; Center Shaft Soil
+zone history name 'centerShaftSoilDisp-z' displacement-z position (52.2111, -201.454, 84) ; Center Shaft Soil
+structure node history name 'centerShaftWallVel-x' velocity-x position (49.7365, -202.195, 84) ; Center Shaft Node
+structure node history name 'centerShaftWallVel-y' velocity-y position (49.7365, -202.195, 84) ; Center Shaft Node
+structure node history name 'centerShaftWallVel-z' velocity-z position (49.7365, -202.195, 84) ; Center Shaft Node
+
+zone history name 'lowerShaftSoilAcc-x' acceleration-x position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilAcc-y' acceleration-y position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilAcc-z' acceleration-z position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilVel-x' velocity-x position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilVel-y' velocity-y position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilVel-z' velocity-z position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilDisp-x' displacement-x position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilDisp-y' displacement-y position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+zone history name 'lowerShaftSoilDisp-z' displacement-z position (53.0467, -202.5, 63.1076) ; Lower Shaft Soil
+structure node history name 'lowerShaftWallVel-x' velocity-x position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+structure node history name 'lowerShaftWallVel-y' velocity-y position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+structure node history name 'lowerShaftWallVel-z' velocity-z position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+
+structure node history name 'mainPlatformWallVel-x' velocity-x position (-8.50261, -194.201, 69.3982) ; mainPlatFormTunnel Node
+structure node history name 'mainPlatformWallVel-y' velocity-y position (-8.50261, -194.201, 69.3982) ; mainPlatFormTunnel Node
+structure node history name 'mainPlatformWallVel-z' velocity-z position (-8.50261, -194.201, 69.3982) ; mainPlatFormTunnel Node
+
+structure shell history name 'ticketHallCeilMoment' moment position (-3.10725, -196.287, 102.389) ; 'ticketHallCeil'
+structure shell history name 'ticketHallWallMoment' moment position (-27.8688, -200.821, 98.1388) ; 'ticketHallWall'
+
+structure shell history name 'mainPlatFormCeilMoment' moment position (-8.50261, -194.201, 69.3982) ; 'mainPlatFormCeilMoment'
+structure shell history name 'upperShaftWallMoment' moment position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+structure shell history name 'centerShaftWallMoment' moment position (49.7365, -202.195, 84) ; Center Shaft Node
+structure shell history name 'lowerShaftWallMoment' moment position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+
+;;;
+
+structure shell history name 'ticketHallCeilIPstress-XX' ipstress-xx surface-x 1 0 0 position (-3.10725, -196.287, 102.389) ; 'ticketHallCeil'
+structure shell history name 'ticketHallCeilIPstress-YY' ipstress-yy surface-x 1 0 0 position (-3.10725, -196.287, 102.389) ; 'ticketHallCeil'
+structure shell history name 'ticketHallWallIPstress-XX' ipstress-xx surface-x 1 0 0 position (-27.8688, -200.821, 98.1388) ; 
+structure shell history name 'ticketHallWallIPstress-YY' ipstress-yy surface-x 1 0 0 position (-27.8688, -200.821, 98.1388) ; 
+structure shell history name 'mainPlatFormCeilIPstress-XX' ipstress-xx surface-x 1 0 0 position (-8.50261, -194.201, 69.3982) ; 'mainPlatFormCeilMoment'
+structure shell history name 'mainPlatFormCeilIPstress-YY' ipstress-yy surface-x 1 0 0 position (-8.50261, -194.201, 69.3982) ; 'mainPlatFormCeilMoment'
+structure shell history name 'upperShaftWallIPstress-XX' ipstress-xx surface-x 1 0 0 position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+structure shell history name 'upperShaftWallIPstress-YY' ipstress-yy surface-x 1 0 0 position (49.2415, -200.924, 96.7279) ; Upper Shaft Node
+structure shell history name 'centerShaftWallIPstress-XX' ipstress-xx surface-x 1 0 0 position (49.7365, -202.195, 84) ; Center Shaft Node
+structure shell history name 'centerShaftWallIPstress-YY' ipstress-yy surface-x 1 0 0 position (49.7365, -202.195, 84) ; Center Shaft Node
+structure shell history name 'lowerShaftWallIPstress-XX' ipstress-xx surface-x 1 0 0 position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+structure shell history name 'lowerShaftWallIPstress-YY' ipstress-yy surface-x 1 0 0 position (50.0344, -203.22, 63.0539) ; Lower Shaft Node
+
+structure beam  history name 'column1-1AxialForce' force-x position (-21.9443, -213.822, 98.1373)
+structure beam  history name 'column1-2AxialForce' force-x position (-6.94383, -213.822, 98.136)
+structure beam  history name 'column1-3AxialForce' force-x position (8.05621, -213.822, 98.1369)
+structure beam  history name 'column1-4AxialForce' force-x position (18.5815, -207.321, 98.1372)
+
+structure beam  history name 'column1-1Moment' moment position (-21.9443, -213.822, 98.1373)
+structure beam  history name 'column1-2Moment' moment position (-6.94383, -213.822, 98.136)
+structure beam  history name 'column1-3Moment' moment position (8.05621, -213.822, 98.1369)
+structure beam  history name 'column1-4Moment' moment position (18.5815, -207.321, 98.1372)
+
+;;
+structure shell history name 'elevatorShaft-L1AxialForce' force-z position (39.1813,-212.738,63.9377)
+structure shell history name 'elevatorShaft-L2AxialForce' force-z position (42.5812,-212.738,64.0784)
+structure shell history name 'elevatorShaft-L3AxialForce' force-z position (45.9811,-213.555,63.6971)
+
+structure shell history name 'elevatorShaft-L1MomentZ' moment position (39.1813,-212.738,63.9377)
+structure shell history name 'elevatorShaft-L2MomentZ' moment position (42.5812,-212.738,64.0784)
+structure shell history name 'elevatorShaft-L3MomentZ' moment position (45.9811,-213.555,63.6971)
+;;;
+
+zone history name 'upperVent5SoilAcc-x' acceleration-x position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilAcc-y' acceleration-y position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilAcc-z' acceleration-z position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilVel-x' velocity-x position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilVel-y' velocity-y position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilVel-z' velocity-z position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilDisp-x' displacement-x position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilDisp-y' displacement-y position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+zone history name 'upperVent5SoilDisp-z' displacement-z position (22.0327,-304.397,101.287) ; Upper Shaft Soil
+structure node history name 'upperVent5WallVel-x' velocity-x position (21.8324,-303.32,101.693) ; Upper Shaft Node
+structure node history name 'upperVent5WallVel-y' velocity-y position (21.8324,-303.32,101.693) ; Upper Shaft Node
+structure node history name 'upperVent5WallVel-z' velocity-z position (21.8324,-303.32,101.693) ; Upper Shaft Node
+
+zone history name 'centerVent5SoilAcc-x' acceleration-x position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilAcc-y' acceleration-y position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilAcc-z' acceleration-z position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilVel-x' velocity-x position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilVel-y' velocity-y position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilVel-z' velocity-z position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilDisp-x' displacement-x position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilDisp-y' displacement-y position (21.3238,-305.124,84) ; Center Shaft Soil
+zone history name 'centerVent5SoilDisp-z' displacement-z position (21.3238,-305.124,84) ; Center Shaft Soil
+structure node history name 'centerVent5WallVel-x' velocity-x position (20.7653,-303.231,85.0646) ; Center Shaft Node
+structure node history name 'centerVent5WallVel-y' velocity-y position (20.7653,-303.231,85.0646) ; Center Shaft Node
+structure node history name 'centerVent5WallVel-z' velocity-z position (20.7653,-303.231,85.0646) ; Center Shaft Node
+
+zone history name 'lowerVent5SoilAcc-x' acceleration-x position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilAcc-y' acceleration-y position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilAcc-z' acceleration-z position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilVel-x' velocity-x position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilVel-y' velocity-y position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilVel-z' velocity-z position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilDisp-x' displacement-x position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilDisp-y' displacement-y position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+zone history name 'lowerVent5SoilDisp-z' displacement-z position (21.3238,-305.124,65.0064) ; Lower Shaft Soil
+structure node history name 'lowerVent5WallVel-x' velocity-x position (22.2662,-303.157,65.0064) ; Lower Shaft Node
+structure node history name 'lowerVent5WallVel-y' velocity-y position (22.2662,-303.157,65.0064) ; Lower Shaft Node
+structure node history name 'lowerVent5WallVel-z' velocity-z position (22.2662,-303.157,65.0064) ; Lower Shaft Node
+
+;;
+structure shell history name 'Vent5ConnTopMoment' moment position (7.26112,-296.508,68.354)
+structure shell history name 'CenterConnTopMoment' moment position (12.0105,-206.525,67.7833)
+structure shell history name 'Vent6ConnTopMoment' moment position (8.3154,-130.586,68.3313)
